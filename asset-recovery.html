@@ -129,6 +129,7 @@
 <div class="form-actions no-print">
     <button type="button" id="downloadPdfBtn">💾 Download as PDF</button>
     <button type="button" id="shareEmailBtn" class="email-btn">📧 Share via Email</button>
+    <button type="button" id="printBtn" class="print-btn">🖨️ Print Form</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -162,9 +163,11 @@
 
         const downloadBtn = document.getElementById('downloadPdfBtn');
         const shareBtn = document.getElementById('shareEmailBtn');
+        const printBtn = document.getElementById('printBtn');
 
         downloadBtn.addEventListener('click', () => generatePdf('Chesmi-Asset-Recovery.pdf'));
         shareBtn.addEventListener('click', () => shareViaEmail('Asset Recovery Form'));
+        printBtn.addEventListener('click', () => window.print());
 
         async function generatePdf(fileName) {
             const { jsPDF } = window.jspdf;
@@ -175,17 +178,39 @@
             const canvas = await html2canvas(formToCapture, {
                 scale: 2,
                 useCORS: true,
-                logging: false
+                logging: false,
+                width: formToCapture.scrollWidth,
+                height: formToCapture.scrollHeight
             });
 
             document.body.classList.remove('pdf-snapshot');
 
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdf = new jsPDF({
+                orientation: 'p',
+                unit: 'mm',
+                format: 'a4'
+            });
+
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = pdf.internal.pageSize.getHeight();
+            const canvasWidth = canvas.width;
+            const canvasHeight = canvas.height;
+            const canvasAspectRatio = canvasHeight / canvasWidth;
             
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            const renderHeight = pdfWidth * canvasAspectRatio;
+            let heightLeft = renderHeight;
+            let position = 0;
+
+            pdf.addImage(canvas, 'PNG', 0, position, pdfWidth, renderHeight);
+            heightLeft -= pdfHeight;
+
+            while (heightLeft > 0) {
+                position = -heightLeft;
+                pdf.addPage();
+                pdf.addImage(canvas, 'PNG', 0, position, pdfWidth, renderHeight);
+                heightLeft -= pdfHeight;
+            }
+            
             pdf.save(fileName);
         }
 
