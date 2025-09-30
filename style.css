@@ -328,10 +328,16 @@ a.portal-link:hover {
 
 /* --- PDF Snapshot Styles --- */
 /* This class is added via JavaScript only during PDF generation */
+.pdf-snapshot .a4-page {
+    /* Reduce font size for better fitting */
+    font-size: 0.9em;
+}
+
 .pdf-snapshot .form-group {
     display: grid;
     grid-template-columns: 180px 1fr; /* Rigid grid to prevent collapsing */
     align-items: center;
+    margin-bottom: 12px; /* Reduce margin to tighten layout */
 }
 
 .pdf-snapshot h2 {
@@ -379,4 +385,11 @@ a.portal-link:hover {
 }
 .pdf-snapshot input[type="radio"]:checked::before {
     border-radius: 50%;
+}
+
+/* Rule for forcing a page break in the laptop form */
+.pdf-snapshot #page-break-element {
+    display: block;
+    height: 10mm; /* Add extra space to push content to the next page */
+    border: none;
 }
