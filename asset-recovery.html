@@ -17,29 +17,29 @@
         <h1>Employee Resignation - Company Property Return</h1>
     </header>
 
-    <h2>Employee Information</h2>
+    <h2>Employee Information (To be completed upon separation)</h2>
     <div class="form-group">
         <label for="fullName">Full Name:</label>
-        <div class="input-container"><input type="text" id="fullName" required></div>
+        <div class="input-container"><input type="text" id="fullName" placeholder="E.g., Sahan De Silva" required></div>
     </div>
     <div class="form-group">
         <label for="employeeID">Employee ID:</label>
-        <div class="input-container"><input type="text" id="employeeID" required></div>
+        <div class="input-container"><input type="text" id="employeeID" placeholder="E.g., CHS-12345" required></div>
     </div>
     <div class="form-group">
         <label for="company">Company:</label>
-        <div class="input-container"><input type="text" id="company" required></div>
+        <div class="input-container"><input type="text" id="company" placeholder="E.g., Chesmi Exports" required></div>
     </div>
     <div class="form-group">
         <label for="branch">Branch:</label>
-        <div class="input-container"><input type="text" id="branch" required></div>
+        <div class="input-container"><input type="text" id="branch" placeholder="E.g., Colombo Main Branch" required></div>
     </div>
     <div class="form-group">
         <label for="designation">Designation:</label>
-        <div class="input-container"><input type="text" id="designation" required></div>
+        <div class="input-container"><input type="text" id="designation" placeholder="E.g., Marketing Executive" required></div>
     </div>
 
-    <h2>Related Assets</h2>
+    <h2>Related Assets (Hardware / Equipment)</h2>
     <table id="assetsTable">
         <thead>
             <tr>
@@ -49,57 +49,61 @@
             </tr>
         </thead>
         <tbody id="assetsTableBody">
-            </tbody>
+            <!-- Asset rows will be added here by JavaScript -->
+        </tbody>
     </table>
     <div style="text-align: right; margin-top: 10px;">
         <button type="button" class="no-print" onclick="addAssetRow()">+ Add Another Asset</button>
     </div>
 
-    <h2>Related Peripherals</h2>
+    <h2>Related Peripherals & Accessories</h2>
     <table class="peripheral-table">
         <thead>
             <tr>
                 <th style="width: 20%;">Peripheral</th>
-                <th style="width: 100px;">Returned (✔)</th>
-                <th>Remark / Serial Number</th>
+                <th style="width: 100px; text-align: center;">Returned (✔)</th>
+                <th>Remark / Condition / Serial Number</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Mouse</td>
+                <td>Mouse (Standard)</td>
                 <td style="text-align: center;"><input type="checkbox" name="peripheralMouse" value="Returned"></td>
-                <td><input type="text" name="peripheralMouseRemark" placeholder="Remark or S/N"></td>
+                <td><input type="text" name="peripheralMouseRemark" placeholder="Enter condition or S/N if applicable"></td>
             </tr>
             <tr>
-                <td>Headset</td>
+                <td>Headset / Earpiece</td>
                 <td style="text-align: center;"><input type="checkbox" name="peripheralHeadset" value="Returned"></td>
-                <td><input type="text" name="peripheralHeadsetRemark" placeholder="Remark or S/N"></td>
+                <td><input type="text" name="peripheralHeadsetRemark" placeholder="Enter condition or S/N if applicable"></td>
             </tr>
             <tr>
-                <td>Keyboard</td>
+                <td>Keyboard (Standard)</td>
                 <td style="text-align: center;"><input type="checkbox" name="peripheralKeyboard" value="Returned"></td>
-                <td><input type="text" name="peripheralKeyboardRemark" placeholder="Remark or S/N"></td>
+                <td><input type="text" name="peripheralKeyboardRemark" placeholder="Enter condition or S/N if applicable"></td>
             </tr>
             <tr>
-                <td>**Other:** <input type="text" name="peripheralOther" placeholder="Specify item"></td>
+                <td>
+                    <span style="font-weight: bold;">Other:</span> 
+                    <div class="input-container" style="display: inline-block; width: 60%;"><input type="text" name="peripheralOther" placeholder="Specify item (e.g., Tablet, Data Card)"></div>
+                </td>
                 <td style="text-align: center;"><input type="checkbox" name="peripheralOtherCheck" value="Returned"></td>
-                <td><input type="text" name="peripheralOtherRemark" placeholder="Remark or S/N"></td>
+                <td><input type="text" name="peripheralOtherRemark" placeholder="Enter condition or S/N if applicable"></td>
             </tr>
         </tbody>
     </table>
 
     <h2>Additional Notes</h2>
     <div class="form-group" style="display: block;">
-        <textarea id="additionalNotes" rows="4" style="width: 100%;"></textarea>
+        <textarea id="additionalNotes" rows="4" style="width: 100%;" placeholder="Document any missing items, outstanding issues, or important details regarding the asset return process."></textarea>
     </div>
 
     <div class="signature-block">
         <div class="signature-field">
             <div class="signature-line"></div>
-            <p class="signature-label">Employee Signature</p>
+            <p class="signature-label">Employee Signature (Confirming handover)</p>
         </div>
         <div class="signature-field">
-            <div class="input-container"><input type="text" placeholder="Name" id="employeeNameInput"></div>
+            <div class="input-container"><input type="text" placeholder="Employee Name (Print)" id="employeeNameInput"></div>
             <p class="signature-label">Name</p>
         </div>
         <div class="signature-field">
@@ -114,7 +118,7 @@
             <p class="signature-label">Authorized By IT Department Signature</p>
         </div>
         <div class="signature-field">
-            <div class="input-container"><input type="text" placeholder="Name" id="itNameInput"></div>
+            <div class="input-container"><input type="text" placeholder="IT Staff Name (Print)" id="itNameInput"></div>
             <p class="signature-label">Name</p>
         </div>
         <div class="signature-field">
@@ -126,20 +130,21 @@
 
 <div class="form-actions no-print">
     <button type="button" onclick="window.print()">💾 Save & Generate PDF / Print</button>
-    <p class="print-message">Use your browser's "Print" or "Save as PDF" function.</p>
+    <p class="print-message">Note: Use your browser's print function to generate a static PDF or hard copy.</p>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        addAssetRow(); // Add one row by default
+        addAssetRow('Laptop', 'XYZ-1234567'); 
+        addAssetRow('Monitor', 'MON-7890');
     });
 
-    function addAssetRow() {
+    function addAssetRow(codename = '', serialNumber = '') {
         const tableBody = document.getElementById('assetsTableBody');
         const newRow = tableBody.insertRow();
         newRow.innerHTML = `
-            <td><div class="input-container"><input type="text" name="codename" required></div></td>
-            <td><div class="input-container"><input type="text" name="serialNumber" required></div></td>
+            <td><div class="input-container"><input type="text" name="codename" placeholder="${codename}" required></div></td>
+            <td><div class="input-container"><input type="text" name="serialNumber" placeholder="${serialNumber}" required></div></td>
             <td class="no-print" style="text-align: center;"><button type="button" class="remove-asset-btn" onclick="removeAssetRow(this)">Remove</button></td>
         `;
     }
@@ -149,7 +154,8 @@
         if (document.getElementById('assetsTableBody').rows.length > 1) {
             row.remove();
         } else {
-            alert("You must have at least one asset row.");
+            // Placeholder text (not an actual alert, but a console message for digital environment)
+            console.warn("Cannot remove the last asset row. Must list at least one asset for clearance.");
         }
     }
 </script>
