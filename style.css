@@ -2,14 +2,15 @@
     /* Chesmi Brand Color (based on your logo) */
     --chesmi-red: #cc3333;
     --chesmi-dark-red: #a32a2a;
-    --chesmi-light-gray: #f4f4f4;
+    --chesmi-light-gray: #f9f9f9; /* Lighter background for modern look */
+    --chesmi-border-color: #ddd;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #eee;
+    background-color: #f0f0f0;
     display: flex;
     justify-content: center;
 }
@@ -19,51 +20,53 @@ body {
     width: 210mm; /* A4 width */
     min-height: 297mm; /* A4 height */
     background-color: white;
-    box-shadow: 0 0 5mm rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Modern shadow */
     margin: 20px 0;
-    padding: 20mm;
+    padding: 25mm; /* Increased padding for clean margins */
     box-sizing: border-box;
 }
 
 /* Header Styling */
 header {
     text-align: center;
-    border-bottom: 3px solid var(--chesmi-red);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    border-bottom: 2px solid var(--chesmi-red);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    margin-bottom: 10px;
 }
 
 .logo-container img {
-    height: 35px; /* Adjust height for visibility */
+    height: 30px; /* Small size for header */
     width: auto;
 }
 
 .logo-text {
-    font-size: 2em;
-    font-weight: bold;
+    font-size: 1.8em;
+    font-weight: 700;
     color: var(--chesmi-dark-red);
     margin: 0;
-    line-height: 1;
 }
 
 h1 {
-    font-size: 1.5em;
-    margin-top: 10px;
-    color: #333;
+    font-size: 1.4em;
+    margin-top: 5px;
+    color: #444;
+    font-weight: 400;
 }
 
 h2 {
     color: var(--chesmi-dark-red);
-    border-left: 5px solid var(--chesmi-red);
-    padding-left: 10px;
-    margin-top: 25px;
+    font-size: 1.2em;
+    border-bottom: 2px solid var(--chesmi-red);
+    padding-bottom: 5px;
+    margin-top: 35px;
     margin-bottom: 15px;
 }
 
@@ -71,19 +74,26 @@ h3 {
     color: #555;
     margin-top: 20px;
     font-size: 1.1em;
+    font-weight: 600;
 }
 
 /* Form Element Styling */
 .form-group {
     margin-bottom: 15px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
+    gap: 10px;
 }
 
 .form-group label {
-    font-weight: bold;
+    font-weight: 600;
     width: 150px; /* Standardize label width */
+    min-width: 120px;
+    color: #333;
+}
+
+.input-container {
+    flex-grow: 1;
 }
 
 .form-group input[type="text"],
@@ -91,12 +101,18 @@ h3 {
 .form-group input[type="date"],
 .form-group select,
 .form-group textarea {
-    flex-grow: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--chesmi-border-color);
+    border-radius: 6px;
     box-sizing: border-box;
-    min-width: 200px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: var(--chesmi-red);
+    box-shadow: 0 0 5px rgba(204, 51, 51, 0.3);
+    outline: none;
 }
 
 textarea {
@@ -107,45 +123,39 @@ textarea {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 0.95em;
+    margin-top: 15px;
+    font-size: 0.9em;
 }
 
-table, th, td {
-    border: 1px solid #ccc;
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
 }
 
 th {
     background-color: var(--chesmi-light-gray);
     color: var(--chesmi-dark-red);
-    padding: 8px;
     text-align: left;
+    font-weight: 600;
 }
 
-td {
-    padding: 8px;
-}
-
-/* Checkbox/Radio Styling */
-.checkbox-group, .radio-group {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.checkbox-group label, .radio-group label {
-    font-weight: normal;
-    width: auto;
+/* Peripheral/Checklist Specific Table */
+.peripheral-table input[type="text"], .checklist-table input[type="text"] {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    padding: 5px;
+    width: 95%;
 }
 
 /* Signature Styling */
 .signature-block {
-    margin-top: 30px;
-    padding-top: 15px;
+    margin-top: 35px;
+    padding-top: 20px;
     border-top: 1px dashed #999;
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 30px;
 }
 
 .signature-field {
@@ -156,13 +166,14 @@ td {
 
 .signature-line {
     border-bottom: 1px solid #000;
-    height: 20px;
+    height: 25px;
     margin-bottom: 5px;
 }
 
 .signature-label {
-    font-size: 0.9em;
+    font-size: 0.85em;
     font-style: italic;
+    color: #555;
 }
 
 /* Button Styling (Hide when printing) */
@@ -172,8 +183,8 @@ td {
     left: 0;
     width: 100%;
     background: #fff;
-    padding: 10px;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    padding: 15px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.08);
     text-align: center;
     z-index: 10;
 }
@@ -182,145 +193,55 @@ td {
     background-color: var(--chesmi-red);
     color: white;
     border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+    padding: 12px 25px;
     font-size: 16px;
-    margin: 4px 2px;
+    font-weight: bold;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    border-radius: 6px;
+    transition: background-color 0.3s, transform 0.1s;
 }
 
 .form-actions button:hover {
     background-color: var(--chesmi-dark-red);
-}
-
-.print-message {
-    font-size: 0.8em;
-    color: #555;
-    margin-top: 5px;
+    transform: translateY(-1px);
 }
 
 /* Print Specific Styles */
 @media print {
-    body {
-        background-color: white;
-    }
+    body { background-color: white; }
     .a4-page {
         margin: 0;
         box-shadow: none;
         width: 100%;
         min-height: auto;
-        padding: 15mm; /* Adjusted padding for better fit */
+        padding: 15mm; 
     }
-    .form-actions {
-        display: none; /* Hide buttons when printing */
-    }
-    .no-print {
+    .form-actions, .no-print {
         display: none !important;
     }
     /* Ensure form inputs look like lines for signing */
-    input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="date"]), 
+    input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]), 
     textarea, 
     select {
         border: none !important;
         border-bottom: 1px solid #000 !important;
         background-color: transparent !important;
         border-radius: 0 !important;
-        padding: 0 !important;
+        padding: 0 0 2px 0 !important;
+        height: auto !important;
     }
-    /* Dates should also look like lines but keep their content */
+    .input-container {
+        padding-top: 5px;
+    }
     input[type="date"] {
-        border: none !important;
-        border-bottom: 1px solid #000 !important;
-        background-color: transparent !important;
         text-align: center;
     }
-    /* Hide 'Remove' button on asset recovery form when printing */
     .remove-asset-btn {
         display: none;
     }
-}
 
-/* Custom styles for the main index page (to avoid creating a separate file) */
-.portal-container {
-    width: 100%;
-    max-width: 800px; /* Max width for content */
-    padding: 30px;
-    text-align: center;
-}
-
-.portal-header {
-    margin-bottom: 40px;
-}
-
-.portal-title {
-    color: var(--chesmi-dark-red);
-    font-size: 2.2em;
-    margin-top: 10px;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.form-card {
-    background-color: var(--chesmi-light-gray);
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
-}
-
-.form-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.form-card h3 {
-    color: var(--chesmi-red);
-    margin-top: 0;
-    font-size: 1.2em;
-}
-
-.form-card p {
-    font-size: 0.9em;
-    color: #555;
-    flex-grow: 1;
-}
-
-.portal-link {
-    display: block;
-    background-color: var(--chesmi-red);
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 15px;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s;
-}
-
-.portal-link:hover {
-    background-color: var(--chesmi-dark-red);
-}
-
-/* Override A4 print styles for the landing page */
-@media screen {
+    /* Index page override for clean printing */
     .a4-page.portal-container {
-        min-height: auto;
-        width: 90%;
-        box-shadow: 0 0 5mm rgba(0, 0, 0, 0.2);
+        padding: 20mm;
     }
 }
