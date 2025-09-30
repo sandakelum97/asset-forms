@@ -33,11 +33,30 @@ header {
     margin-bottom: 20px;
 }
 
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container img {
+    height: 35px; /* Adjust height for visibility */
+    width: auto;
+}
+
 .logo-text {
     font-size: 2em;
     font-weight: bold;
     color: var(--chesmi-dark-red);
     margin: 0;
+    line-height: 1;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-top: 10px;
+    color: #333;
 }
 
 h2 {
@@ -46,6 +65,12 @@ h2 {
     padding-left: 10px;
     margin-top: 25px;
     margin-bottom: 15px;
+}
+
+h3 {
+    color: #555;
+    margin-top: 20px;
+    font-size: 1.1em;
 }
 
 /* Form Element Styling */
@@ -83,6 +108,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    font-size: 0.95em;
 }
 
 table, th, td {
@@ -104,6 +130,7 @@ td {
 .checkbox-group, .radio-group {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .checkbox-group label, .radio-group label {
@@ -124,6 +151,7 @@ td {
 .signature-field {
     flex: 1;
     text-align: center;
+    min-width: 150px;
 }
 
 .signature-line {
@@ -194,7 +222,7 @@ td {
         display: none !important;
     }
     /* Ensure form inputs look like lines for signing */
-    input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]), 
+    input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="date"]), 
     textarea, 
     select {
         border: none !important;
@@ -203,8 +231,96 @@ td {
         border-radius: 0 !important;
         padding: 0 !important;
     }
-    /* Hide 'X' button on asset recovery form when printing */
+    /* Dates should also look like lines but keep their content */
+    input[type="date"] {
+        border: none !important;
+        border-bottom: 1px solid #000 !important;
+        background-color: transparent !important;
+        text-align: center;
+    }
+    /* Hide 'Remove' button on asset recovery form when printing */
     .remove-asset-btn {
         display: none;
+    }
+}
+
+/* Custom styles for the main index page (to avoid creating a separate file) */
+.portal-container {
+    width: 100%;
+    max-width: 800px; /* Max width for content */
+    padding: 30px;
+    text-align: center;
+}
+
+.portal-header {
+    margin-bottom: 40px;
+}
+
+.portal-title {
+    color: var(--chesmi-dark-red);
+    font-size: 2.2em;
+    margin-top: 10px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.form-card {
+    background-color: var(--chesmi-light-gray);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.form-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.form-card h3 {
+    color: var(--chesmi-red);
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+.form-card p {
+    font-size: 0.9em;
+    color: #555;
+    flex-grow: 1;
+}
+
+.portal-link {
+    display: block;
+    background-color: var(--chesmi-red);
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.portal-link:hover {
+    background-color: var(--chesmi-dark-red);
+}
+
+/* Override A4 print styles for the landing page */
+@media screen {
+    .a4-page.portal-container {
+        min-height: auto;
+        width: 90%;
+        box-shadow: 0 0 5mm rgba(0, 0, 0, 0.2);
     }
 }
