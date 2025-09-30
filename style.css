@@ -393,3 +393,22 @@ a.portal-link:hover {
     height: 10mm; /* Add extra space to push content to the next page */
     border: none;
 }
+/* ADD THIS TO THE END OF YOUR style.css FILE */
+
+/* Styles for the minimized condition checklist radios */
+.condition-radios {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+.condition-radios input[type="radio"] {
+    margin-right: 5px;
+}
+.condition-radios label {
+    /* Override default form-group label styles */
+    width: auto;
+    font-weight: normal;
+    color: var(--text-color);
+    flex-shrink: 1;
+}
