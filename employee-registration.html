@@ -24,45 +24,45 @@
         <h1>New Employee Registration for IT Department</h1>
     </header>
 
-    <h2>Employee Information</h2>
+    <h2>Employee Information (To be completed by HR/HOD)</h2>
     <div class="form-group">
         <label for="name">Name:</label>
-        <div class="input-container"><input type="text" id="name" required></div>
+        <div class="input-container"><input type="text" id="name" placeholder="E.g., Kamal Perera" required></div>
     </div>
     <div class="form-group">
         <label for="designation">Designation:</label>
-        <div class="input-container"><input type="text" id="designation" required></div>
+        <div class="input-container"><input type="text" id="designation" placeholder="E.g., Senior Accountant" required></div>
     </div>
     <div class="form-group">
         <label for="company">Company:</label>
-        <div class="input-container"><input type="text" id="company" required></div>
+        <div class="input-container"><input type="text" id="company" placeholder="E.g., Chesmi International (Pvt) Ltd" required></div>
     </div>
     <div class="form-group">
         <label for="department">Department:</label>
-        <div class="input-container"><input type="text" id="department" placeholder="IT Department" required></div>
+        <div class="input-container"><input type="text" id="department" placeholder="E.g., Finance / IT" required></div>
     </div>
     <div class="form-group">
-        <label for="supervisor">Supervisor:</label>
-        <div class="input-container"><input type="text" id="supervisor" required></div>
+        <label for="supervisor">Reporting Supervisor:</label>
+        <div class="input-container"><input type="text" id="supervisor" placeholder="E.g., Mr. Rohan Silva (HOD)" required></div>
     </div>
     <div class="form-group">
         <label for="joiningDate">Joining Date:</label>
         <div class="input-container"><input type="date" id="joiningDate"></div>
     </div>
     <div class="form-group">
-        <label for="resignationDate">Resignation Date (if applicable):</label>
-        <div class="input-container"><input type="date" id="resignationDate"></div>
+        <label for="resignationDate">Resignation Date:</label>
+        <div class="input-container"><input type="date" id="resignationDate" placeholder="Optional for registration"></div>
     </div>
     <div class="form-group">
         <label for="email">Email Address:</label>
-        <div class="input-container"><input type="email" id="email" required></div>
+        <div class="input-container"><input type="email" id="email" placeholder="E.g., k.perera@chesmi.lk" required></div>
     </div>
     <div class="form-group">
         <label for="fingerId">Finger ID:</label>
-        <div class="input-container"><input type="text" id="fingerId"></div>
+        <div class="input-container"><input type="text" id="fingerId" placeholder="E.g., 4056 (To be filled by HR)"></div>
     </div>
 
-    <h2>Access Requirements (Mark 'Yes' or 'No')</h2>
+    <h2>Access Requirements (Mark 'Yes' or 'No' - To be completed by IT)</h2>
     <table class="access-table">
         <thead>
             <tr>
@@ -78,7 +78,7 @@
                 <td><input type="checkbox" name="navAccess" value="No"></td>
             </tr>
             <tr>
-                <td>QB Access:</td>
+                <td>QB Access (QuickBooks/Accounting):</td>
                 <td><input type="checkbox" name="qbAccess" value="Yes"></td>
                 <td><input type="checkbox" name="qbAccess" value="No"></td>
             </tr>
@@ -93,32 +93,32 @@
                 <td><input type="checkbox" name="pettyFleetAccess" value="No"></td>
             </tr>
             <tr>
-                <td>Share Folder Access:</td>
+                <td>Shared Network Folder Access:</td>
                 <td><input type="checkbox" name="shareFolderAccess" value="Yes"></td>
                 <td><input type="checkbox" name="shareFolderAccess" value="No"></td>
             </tr>
             <tr>
-                <td>Laptop:</td>
+                <td>Laptop Provisioning:</td>
                 <td><input type="checkbox" name="laptopAccess" value="Yes"></td>
                 <td><input type="checkbox" name="laptopAccess" value="No"></td>
             </tr>
             <tr>
-                <td>Email Access:</td>
+                <td>Corporate Email Access:</td>
                 <td><input type="checkbox" name="emailAccess" value="Yes"></td>
                 <td><input type="checkbox" name="emailAccess" value="No"></td>
             </tr>
             <tr>
-                <td>Fingerprint Access:</td>
+                <td>Biometric (Fingerprint) Access:</td>
                 <td><input type="checkbox" name="fingerprintAccess" value="Yes"></td>
                 <td><input type="checkbox" name="fingerprintAccess" value="No"></td>
             </tr>
             <tr>
-                <td>Mobile Phone:</td>
+                <td>Company Mobile Phone:</td>
                 <td><input type="checkbox" name="mobilePhone" value="Yes"></td>
                 <td><input type="checkbox" name="mobilePhone" value="No"></td>
             </tr>
             <tr>
-                <td>SIM Card:</td>
+                <td>Company SIM Card:</td>
                 <td><input type="checkbox" name="simCard" value="Yes"></td>
                 <td><input type="checkbox" name="simCard" value="No"></td>
             </tr>
@@ -128,18 +128,18 @@
     <div class="signature-block">
         <div class="signature-field">
             <div class="signature-line"></div>
-            <p class="signature-label">IT Department, Chesmi Groups Signature</p>
+            <p class="signature-label">Authorized by IT Department Signature</p>
         </div>
         <div class="signature-field">
             <div class="signature-line"></div>
-            <p class="signature-label">Supervisor / Department Head, Chesmi Groups Signature</p>
+            <p class="signature-label">Supervisor / Department Head Signature</p>
         </div>
     </div>
 </form>
 
 <div class="form-actions no-print">
     <button type="button" onclick="window.print()">💾 Save & Generate PDF / Print</button>
-    <p class="print-message">Use your browser's "Print" or "Save as PDF" function.</p>
+    <p class="print-message">Note: Use your browser's print function to generate a static PDF or hard copy.</p>
 </div>
 </body>
 </html>
