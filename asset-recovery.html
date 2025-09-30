@@ -20,32 +20,32 @@
     <h2>Employee Information</h2>
     <div class="form-group">
         <label for="fullName">Full Name:</label>
-        <input type="text" id="fullName" required>
+        <div class="input-container"><input type="text" id="fullName" required></div>
     </div>
     <div class="form-group">
         <label for="employeeID">Employee ID:</label>
-        <input type="text" id="employeeID" required>
+        <div class="input-container"><input type="text" id="employeeID" required></div>
     </div>
     <div class="form-group">
         <label for="company">Company:</label>
-        <input type="text" id="company" value="Chesmi Groups" required>
+        <div class="input-container"><input type="text" id="company" required></div>
     </div>
     <div class="form-group">
         <label for="branch">Branch:</label>
-        <input type="text" id="branch" required>
+        <div class="input-container"><input type="text" id="branch" required></div>
     </div>
     <div class="form-group">
         <label for="designation">Designation:</label>
-        <input type="text" id="designation" required>
+        <div class="input-container"><input type="text" id="designation" required></div>
     </div>
 
     <h2>Related Assets</h2>
     <table id="assetsTable">
         <thead>
             <tr>
-                <th>Codename</th>
+                <th style="width: 35%;">Codename (e.g., Laptop, Monitor)</th>
                 <th>Serial Number</th>
-                <th class="no-print">Action</th>
+                <th class="no-print" style="width: 80px;">Action</th>
             </tr>
         </thead>
         <tbody id="assetsTableBody">
@@ -56,19 +56,41 @@
     </div>
 
     <h2>Related Peripherals</h2>
-    <div class="checkbox-group">
-        <label><input type="checkbox" name="peripheral" value="Mouse"> Mouse</label>
-        <label><input type="checkbox" name="peripheral" value="Headset"> Headset</label>
-        <label><input type="checkbox" name="peripheral" value="Keyboard"> Keyboard</label>
-    </div>
-    <div class="form-group" style="margin-top: 15px;">
-        <label for="otherPeripherals">Other:</label>
-        <input type="text" id="otherPeripherals">
-    </div>
+    <table class="peripheral-table">
+        <thead>
+            <tr>
+                <th style="width: 20%;">Peripheral</th>
+                <th style="width: 100px;">Returned (✔)</th>
+                <th>Remark / Serial Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mouse</td>
+                <td style="text-align: center;"><input type="checkbox" name="peripheralMouse" value="Returned"></td>
+                <td><input type="text" name="peripheralMouseRemark" placeholder="Remark or S/N"></td>
+            </tr>
+            <tr>
+                <td>Headset</td>
+                <td style="text-align: center;"><input type="checkbox" name="peripheralHeadset" value="Returned"></td>
+                <td><input type="text" name="peripheralHeadsetRemark" placeholder="Remark or S/N"></td>
+            </tr>
+            <tr>
+                <td>Keyboard</td>
+                <td style="text-align: center;"><input type="checkbox" name="peripheralKeyboard" value="Returned"></td>
+                <td><input type="text" name="peripheralKeyboardRemark" placeholder="Remark or S/N"></td>
+            </tr>
+            <tr>
+                <td>**Other:** <input type="text" name="peripheralOther" placeholder="Specify item"></td>
+                <td style="text-align: center;"><input type="checkbox" name="peripheralOtherCheck" value="Returned"></td>
+                <td><input type="text" name="peripheralOtherRemark" placeholder="Remark or S/N"></td>
+            </tr>
+        </tbody>
+    </table>
 
     <h2>Additional Notes</h2>
-    <div class="form-group">
-        <textarea id="additionalNotes" rows="4"></textarea>
+    <div class="form-group" style="display: block;">
+        <textarea id="additionalNotes" rows="4" style="width: 100%;"></textarea>
     </div>
 
     <div class="signature-block">
@@ -77,11 +99,11 @@
             <p class="signature-label">Employee Signature</p>
         </div>
         <div class="signature-field">
-            <input type="text" style="text-align: center;" id="employeeNameInput">
+            <div class="input-container"><input type="text" placeholder="Name" id="employeeNameInput"></div>
             <p class="signature-label">Name</p>
         </div>
         <div class="signature-field">
-            <input type="date" style="text-align: center;" id="employeeDateInput">
+            <div class="input-container"><input type="date" id="employeeDateInput"></div>
             <p class="signature-label">Date</p>
         </div>
     </div>
@@ -92,11 +114,11 @@
             <p class="signature-label">Authorized By IT Department Signature</p>
         </div>
         <div class="signature-field">
-            <input type="text" style="text-align: center;" id="itNameInput">
+            <div class="input-container"><input type="text" placeholder="Name" id="itNameInput"></div>
             <p class="signature-label">Name</p>
         </div>
         <div class="signature-field">
-            <input type="date" style="text-align: center;" id="itDateInput">
+            <div class="input-container"><input type="date" id="itDateInput"></div>
             <p class="signature-label">Date</p>
         </div>
     </div>
@@ -109,29 +131,21 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Initialize with one row and set dates
-        const tableBody = document.getElementById('assetsTableBody');
-        if (tableBody.rows.length === 0) {
-            addAssetRow(); 
-        }
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('employeeDateInput').value = today;
-        document.getElementById('itDateInput').value = today;
+        addAssetRow(); // Add one row by default
     });
 
     function addAssetRow() {
         const tableBody = document.getElementById('assetsTableBody');
         const newRow = tableBody.insertRow();
         newRow.innerHTML = `
-            <td><input type="text" name="codename" placeholder="e.g., Laptop, Monitor" required></td>
-            <td><input type="text" name="serialNumber" placeholder="Serial Number" required></td>
-            <td class="no-print"><button type="button" class="remove-asset-btn" onclick="removeAssetRow(this)">Remove</button></td>
+            <td><div class="input-container"><input type="text" name="codename" required></div></td>
+            <td><div class="input-container"><input type="text" name="serialNumber" required></div></td>
+            <td class="no-print" style="text-align: center;"><button type="button" class="remove-asset-btn" onclick="removeAssetRow(this)">Remove</button></td>
         `;
     }
 
     function removeAssetRow(button) {
         const row = button.parentNode.parentNode;
-        // Only remove if there is more than one row
         if (document.getElementById('assetsTableBody').rows.length > 1) {
             row.remove();
         } else {
