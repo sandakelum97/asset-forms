@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laptop Acknowledgement - Chesmi Groups IT</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .workflow-step { border: 1px solid #eee; padding: 20px; margin-top: 30px; border-radius: 8px; background-color: #fcfcfc; }
+        .workflow-step h3 { margin-top: 0; color: var(--chesmi-dark-red); }
+        .load-file-label { background-color: #007bff; color: white; padding: 12px 25px; font-size: 1em; font-family: 'Poppins', sans-serif; border-radius: 8px; cursor: pointer; display: inline-block; transition: background-color 0.2s; }
+        .load-file-label:hover { background-color: #0056b3; }
+        #loadDataInput { display: none; }
+    </style>
 </head>
 <body>
 
@@ -16,157 +23,212 @@
         <h1>Employee Laptop Acknowledgement Form</h1>
     </header>
 
-    <h2>Employee & Assignment Details</h2>
-    <div class="form-group">
-        <label for="epfNumber">EPF Number:</label>
-        <div class="input-container"><input type="text" id="epfNumber" placeholder="E.g., EPF-00102"></div>
-    </div>
-    <div class="form-group">
-        <label for="employeeName">Employee Name:</label>
-        <div class="input-container"><input type="text" id="employeeName" placeholder="E.g., Nimal Fernando"></div>
-    </div>
-    <div class="form-group">
-        <label for="branch">Branch:</label>
-        <div class="input-container"><input type="text" id="branch" placeholder="E.g., Head Office"></div>
-    </div>
-    <div class="form-group">
-        <label for="department">Department:</label>
-        <div class="input-container"><input type="text" id="department" placeholder="E.g., Sales"></div>
-    </div>
-    <div class="form-group">
-        <label for="designation">Designation:</label>
-        <div class="input-container"><input type="text" id="designation" placeholder="E.g., Sales Manager"></div>
-    </div>
+    <div id="formFieldsContainer">
+        <h2>Employee & Assignment Details</h2>
+        <div class="form-group">
+            <label for="epfNumber">EPF Number:</label>
+            <div class="input-container"><input type="text" id="epfNumber" name="epfNumber" placeholder="E.g., EPF-00102"></div>
+        </div>
+        <div class="form-group">
+            <label for="employeeName">Employee Name:</label>
+            <div class="input-container"><input type="text" id="employeeName" name="employeeName" placeholder="E.g., Nimal Fernando"></div>
+        </div>
+        <div class="form-group">
+            <label for="branch">Branch:</label>
+            <div class="input-container"><input type="text" id="branch" name="branch" placeholder="E.g., Head Office"></div>
+        </div>
+        <div class="form-group">
+            <label for="department">Department:</label>
+            <div class="input-container"><input type="text" id="department" name="department" placeholder="E.g., Sales"></div>
+        </div>
+        <div class="form-group">
+            <label for="designation">Designation:</label>
+            <div class="input-container"><input type="text" id="designation" name="designation" placeholder="E.g., Sales Manager"></div>
+        </div>
 
-    <h2>Laptop Details (Assigned IT Resource)</h2>
-    <div class="form-group">
-        <label for="laptopModel">Model:</label>
-        <div class="input-container"><input type="text" id="laptopModel" placeholder="E.g., Dell Latitude 5420" required></div>
-    </div>
-    <div class="form-group">
-        <label for="serialNumber">Serial Number:</label>
-        <div class="input-container"><input type="text" id="serialNumber" placeholder="E.g., ABC-7362-XYZ" required></div>
-    </div>
+        <h2>Laptop Details (Assigned IT Resource)</h2>
+        <div class="form-group">
+            <label for="laptopModel">Model:</label>
+            <div class="input-container"><input type="text" id="laptopModel" name="laptopModel" placeholder="E.g., Dell Latitude 5420" required></div>
+        </div>
+        <div class="form-group">
+            <label for="serialNumber">Serial Number:</label>
+            <div class="input-container"><input type="text" id="serialNumber" name="serialNumber" placeholder="E.g., ABC-7362-XYZ" required></div>
+        </div>
 
-    <h3>Laptop Specification <span style="font-weight:400; font-size: 0.8em;">(Filled By IT Department)</span></h3>
-    <table style="width: 80%;" class="spec-table">
-        <tr><th style="width: 30%;">Item</th><th>Current Status/Spec</th></tr>
-        <tr><td>Processor</td><td><input type="text" name="specProcessor" placeholder="E.g., Core i7 11th Gen"></td></tr>
-        <tr><td>RAM</td><td><input type="text" name="specRAM" placeholder="E.g., 16GB DDR4"></td></tr>
-        <tr><td>ROM/HDD</td><td><input type="text" name="specROM" placeholder="E.g., 512GB NVMe SSD"></td></tr>
-        <tr><td>OS</td><td><input type="text" name="specOS" placeholder="E.g., Windows 10 Pro"></td></tr>
-        <tr><td>Laptop charger</td><td><input type="text" name="specCharger" placeholder="E.g., Yes / P/N: 45W-CHG"></td></tr>
-        <tr><td>Laptop Bag Status</td><td><input type="text" name="specBag" placeholder="E.g., NEW / OLD / N/A"></td></tr>
-        <tr><td colspan="2" style="font-size: 0.9em; border-top: 1px solid #ccc; padding-top: 10px;">
-            Inventory Update Date: <div class="input-container" style="display: inline-block; width: 150px;"><input type="date" name="inventoryDate"></div> | 
-            Updated By: <div class="input-container" style="display: inline-block; width: 150px;"><input type="text" name="inventoryUpdater" placeholder="IT Staff Name"></div>
-        </td></tr>
-    </table>
+        <h3>Laptop Specification <span style="font-weight:400; font-size: 0.8em;">(Filled By IT Department)</span></h3>
+        <table style="width: 80%;" class="spec-table">
+            <tr><th style="width: 30%;">Item</th><th>Current Status/Spec</th></tr>
+            <tr><td>Processor</td><td><input type="text" name="specProcessor" placeholder="E.g., Core i7 11th Gen"></td></tr>
+            <tr><td>RAM</td><td><input type="text" name="specRAM" placeholder="E.g., 16GB DDR4"></td></tr>
+            <tr><td>ROM/HDD</td><td><input type="text" name="specROM" placeholder="E.g., 512GB NVMe SSD"></td></tr>
+            <tr><td>OS</td><td><input type="text" name="specOS" placeholder="E.g., Windows 10 Pro"></td></tr>
+            <tr><td>Laptop charger</td><td><input type="text" name="specCharger" placeholder="E.g., Yes / P/N: 45W-CHG"></td></tr>
+            <tr><td>Laptop Bag Status</td><td><input type="text" name="specBag" placeholder="E.g., NEW / OLD / N/A"></td></tr>
+            <tr><td colspan="2" style="font-size: 0.9em; border-top: 1px solid #ccc; padding-top: 10px;">
+                Inventory Update Date: <div class="input-container" style="display: inline-block; width: 150px;"><input type="date" name="inventoryDate"></div> | 
+                Updated By: <div class="input-container" style="display: inline-block; width: 150px;"><input type="text" name="inventoryUpdater" placeholder="IT Staff Name"></div>
+            </td></tr>
+        </table>
 
-    <h2 style="margin-top: 30px;">User Acknowledgement (Employee Confirms Acceptance)</h2>
-    <div style="border: 1px solid #ccc; padding: 15px; font-size: 0.9em; line-height: 1.7; border-radius: 6px; background-color: #fdfdfd;">
+        <h2 style="margin-top: 30px;">User Acknowledgement (Employee Confirms Acceptance)</h2>
+        <div style="border: 1px solid #ccc; padding: 15px; font-size: 0.9em; line-height: 1.7; border-radius: 6px; background-color: #fdfdfd;">
+            <ul class="acknowledgement-list">
+                <li>I am aware that I am being provided Chesmi Group resources; I will be responsible for the maintenance and security of these resources under the guidance of the IT Division.</li>
+                <li>I understand that any damage, loss, or malfunction must be immediately reported to the IT Division via email with my manager's approval, and I will submit the device for investigation if required.</li>
+                <li>I accept full financial liability for damages caused by my negligence or misuse, and I will use these resources for official business purposes only, in compliance with company policy and the laws of Sri Lanka.</li>
+                <li>I will complete all required user training, including information security and data handling, upon assignment and annually thereafter.</li>
+            </ul>
+        </div>
+
+        <div class="signature-block">
+            <div class="signature-field">
+                <div class="signature-line"></div>
+                <p class="signature-label">Employee Signature</p>
+            </div>
+            <div class="signature-field">
+                <div class="input-container"><input type="date" id="ackDateInput" name="ackDateInput"></div>
+                <p class="signature-label">Date</p>
+            </div>
+        </div>
         
-        <h3 style="margin-top: 0; font-size: 1em;">1. Custody & Care</h3>
-        <ul class="acknowledgement-list">
-            <li><strong>Responsibility:</strong> I accept full responsibility for the proper handling and security of the assigned company laptop and its accessories.</li>
-            <li><strong>Maintenance:</strong> I will perform daily care and maintenance of the equipment as guided by the IT Division.</li>
-        </ul>
+        <hr id="page-break-element" style="margin-top: 30px; border-top: 1px solid #e0e0e0;">
+
+        <h2>Laptop Condition Checklist <span style="font-weight:400; font-size: 0.8em;">(IT Department Use)</span></h2>
+
+        <h3 style="margin-top: 15px;">1. Physical Inspection <span style="font-weight:400; font-size: 0.8em;">(Check if in working condition/good state)</span></h3>
+        <table class="checklist-table">
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkHinges"></td><td>Lid / Hinges Condition (Check for gaps or damage)</td></tr>
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkScreen"></td><td>Screen (Check for scratches, cracks, or disfigurement)</td></tr>
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkKeyboard"></td><td>Keyboard/Keys (All present and functional)</td></tr>
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkBag"></td><td>Laptop Bag (Condition Check - If applicable)</td></tr>
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkAdapter"></td><td>Power Adaptor/Charger (No damage to wire or head)</td></tr>
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkBody"></td><td>General Exterior / Body Condition (Check for major scuffs or dents)</td></tr>
+        </table>
         
-        <h3 style="margin-top: 15px; font-size: 1em;">2. Reporting & Liability</h3>
-        <ul class="acknowledgement-list">
-            <li><strong>Reporting Issues:</strong> I will immediately report any damage, loss, or malfunction to the IT Division via email, with prior approval from my manager.</li>
-            <li><strong>Financial Liability:</strong> I accept full financial liability for any damage or loss caused by my negligence, misuse, or failure to follow IT policy.</li>
-        </ul>
-
-        <h3 style="margin-top: 15px; font-size: 1em;">3. Usage & Compliance</h3>
-        <ul class="acknowledgement-list">
-            <li><strong>Authorized Use:</strong> This equipment is for official company business only. Prohibited personal use is not allowed.</li>
-            <li><strong>Legal Compliance:</strong> I will not use this equipment to violate company policies or the laws of Sri Lanka.</li>
-            <li><strong>Training:</strong> I agree to complete all required security and data handling training upon assignment and annually thereafter.</li>
-        </ul>
-    </div>
-
-    <div class="signature-block">
-        <div class="signature-field">
-            <div class="signature-line"></div>
-            <p class="signature-label">Employee Signature</p>
+        <div class="form-group" style="display: block; margin-top: 15px;">
+            <label for="conditionNotes" style="width: auto; font-weight: 600;">Description of any Scratches/Marks/Damage Found:</label>
+            <textarea id="conditionNotes" name="conditionNotes" rows="2" style="width: 100%;" placeholder="Enter details of any pre-existing permanent damage or marks."></textarea>
         </div>
-        <div class="signature-field">
-            <div class="input-container"><input type="date" id="ackDateInput"></div>
-            <p class="signature-label">Date</p>
+
+        <h3 style="margin-top: 25px;">2. Functional Inspection <span style="font-weight:400; font-size: 0.8em;">(Check if working)</span></h3>
+        <table class="checklist-table">
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkDisplay"></td><td>Display Brightness / No dead pixels</td></tr>
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkTrackpad"></td><td>All keys and Trackpad/Mouse are working</td></tr>
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkWifi"></td><td>Wireless/Wi-Fi connectivity & Bluetooth</td></tr>
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkBattery"></td><td>Battery Health (Charged and holding charge)</td></tr>
+            <tr><td style="width: 50px;"><input type="checkbox" name="checkOS"></td><td>Operating System License/Activation & Required Software (e.g., Antivirus)</td></tr>
+        </table>
+
+        <p style="margin-top: 20px; font-style: italic;">I confirm that I have physically inspected and functionally tested the device. Unless otherwise noted above, all items were found to be in good working condition.</p>
+
+        <div class="signature-block">
+            <div class="signature-field">
+                <div class="signature-line"></div>
+                <p class="signature-label">Tech Support Signature</p>
+            </div>
+            <div class="signature-field">
+                <div class="input-container"><input type="text" placeholder="Tech Support Name (Print)" id="techNameInput" name="techNameInput"></div>
+                <p class="signature-label">Tech Support Name</p>
+            </div>
+            <div class="signature-field">
+                <div class="input-container"><input type="date" id="techDateInput" name="techDateInput"></div>
+                <p class="signature-label">Date</p>
+            </div>
         </div>
-    </div>
-    
-    <hr style="margin-top: 30px; border-top: 1px solid #e0e0e0;">
-
-    <h2>Laptop Condition Checklist <span style="font-weight:400; font-size: 0.8em;">(IT Department Use)</span></h2>
-
-    <h3 style="margin-top: 15px;">1. Physical Inspection <span style="font-weight:400; font-size: 0.8em;">(Check if in working condition/good state)</span></h3>
-    <table class="checklist-table">
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Lid / Hinges Condition (Check for gaps or damage)</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Screen (Check for scratches, cracks, or disfigurement)</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Keyboard/Keys (All present and functional)</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Laptop Bag (Condition Check - If applicable)</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Power Adaptor/Charger (No damage to wire or head)</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>General Exterior / Body Condition (Check for major scuffs or dents)</td></tr>
-    </table>
-    
-    <div class="form-group" style="display: block; margin-top: 15px;">
-        <label for="conditionNotes" style="width: auto; font-weight: 600;">Description of any Scratches/Marks/Damage Found:</label>
-        <textarea id="conditionNotes" rows="2" style="width: 100%;" placeholder="Enter details of any pre-existing permanent damage or marks."></textarea>
-    </div>
-
-    <h3 style="margin-top: 25px;">2. Functional Inspection <span style="font-weight:400; font-size: 0.8em;">(Check if working)</span></h3>
-    <table class="checklist-table">
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Display Brightness / No dead pixels</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>All keys and Trackpad/Mouse are working</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Wireless/Wi-Fi connectivity & Bluetooth</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Battery Health (Charged and holding charge)</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Operating System License/Activation & Required Software (e.g., Antivirus)</td></tr>
-    </table>
-
-    <p style="margin-top: 20px; font-style: italic;">I confirm that I have physically inspected and functionally tested the device. Unless otherwise noted above, all items were found to be in good working condition.</p>
-
-    <div class="signature-block">
-        <div class="signature-field">
-            <div class="signature-line"></div>
-            <p class="signature-label">Tech Support Signature</p>
-        </div>
-        <div class="signature-field">
-            <div class="input-container"><input type="text" placeholder="Tech Support Name (Print)" id="techNameInput"></div>
-            <p class="signature-label">Tech Support Name</p>
-        </div>
-        <div class="signature-field">
-            <div class="input-container"><input type="date" id="techDateInput"></div>
-            <p class="signature-label">Date</p>
-        </div>
-    </div>
+    </div> 
 </form>
 
-<div class="form-actions no-print">
-    <button type="button" id="downloadPdfBtn">💾 Download as PDF</button>
-    <button type="button" id="shareEmailBtn" class="email-btn">📧 Share via Email</button>
-    <button type="button" id="printBtn" class="print-btn">🖨️ Print Form</button>
+<div class="no-print">
+    <div class="workflow-step">
+        <h3>Step 1: IT Department Actions</h3>
+        <p>Fill in all the technical details above, then save the data file and email it to the employee.</p>
+        <button type="button" id="saveDataBtn">📄 Save Data File for Employee</button>
+    </div>
+    <div class="workflow-step">
+        <h3>Step 2: Employee Actions</h3>
+        <p>Click below to load the data file you received from IT. Then, review the form, fill the remaining sections, and finalize the document.</p>
+        <label for="loadDataInput" class="load-file-label">📂 Load Data from File</label>
+        <input type="file" id="loadDataInput" accept=".json">
+    </div>
+    <div class="workflow-step">
+        <h3>Step 3: Finalize Document</h3>
+        <p>Once the form is fully completed by both parties, use the buttons below to create the final copy.</p>
+        <div class="form-actions">
+            <button type="button" id="downloadPdfBtn">💾 Download as PDF</button>
+            <button type="button" id="printBtn" class="print-btn">🖨️ Print Form</button>
+        </div>
+    </div>
 </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
     window.onload = function () {
+        const saveDataBtn = document.getElementById('saveDataBtn');
+        const loadDataInput = document.getElementById('loadDataInput');
         const downloadBtn = document.getElementById('downloadPdfBtn');
-        const shareBtn = document.getElementById('shareEmailBtn');
         const printBtn = document.getElementById('printBtn');
 
+        saveDataBtn.addEventListener('click', saveDataToFile);
+        loadDataInput.addEventListener('change', loadDataFromFile);
         downloadBtn.addEventListener('click', () => generatePdf('Chesmi-Laptop-Acknowledgement.pdf'));
-        shareBtn.addEventListener('click', () => shareViaEmail('Laptop Acknowledgement'));
         printBtn.addEventListener('click', () => window.print());
+
+        function saveDataToFile() {
+            const formData = {};
+            const inputs = document.querySelectorAll('#formFieldsContainer input, #formFieldsContainer textarea');
+            inputs.forEach(input => {
+                if (input.name) {
+                    if (input.type === 'checkbox' || input.type === 'radio') {
+                        formData[input.name] = input.checked;
+                    } else {
+                        formData[input.name] = input.value;
+                    }
+                }
+            });
+            const dataStr = JSON.stringify(formData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.download = `laptop_data_${formData.employeeName || 'employee'}.json`;
+            link.href = url;
+            link.click();
+            URL.revokeObjectURL(url);
+            alert('Data file has been saved! Please attach this file to your email.');
+        }
+
+        function loadDataFromFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    for (const key in data) {
+                        const input = document.querySelector(`[name="${key}"]`);
+                        if (input) {
+                            if (input.type === 'checkbox' || input.type === 'radio') {
+                                input.checked = data[key];
+                            } else {
+                                input.value = data[key];
+                            }
+                        }
+                    }
+                    alert('Data loaded successfully! Please complete the remaining sections.');
+                } catch (error) {
+                    alert('Error: Could not load or parse the data file.');
+                    console.error("Failed to parse JSON:", error);
+                }
+            };
+            reader.readAsText(file);
+        }
 
         async function generatePdf(fileName) {
             const { jsPDF } = window.jspdf;
             const formToCapture = document.querySelector('.a4-page');
-            
             document.body.classList.add('pdf-snapshot');
-
             const canvas = await html2canvas(formToCapture, {
                 scale: 2,
                 useCORS: true,
@@ -174,44 +236,25 @@
                 width: formToCapture.scrollWidth,
                 height: formToCapture.scrollHeight
             });
-
             document.body.classList.remove('pdf-snapshot');
-
-            const pdf = new jsPDF({
-                orientation: 'p',
-                unit: 'mm',
-                format: 'a4'
-            });
-
+            const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = pdf.internal.pageSize.getHeight();
             const canvasWidth = canvas.width;
             const canvasHeight = canvas.height;
             const canvasAspectRatio = canvasHeight / canvasWidth;
-            
             const renderHeight = pdfWidth * canvasAspectRatio;
             let heightLeft = renderHeight;
             let position = 0;
-
             pdf.addImage(canvas, 'PNG', 0, position, pdfWidth, renderHeight);
             heightLeft -= pdfHeight;
-
             while (heightLeft > 0) {
                 position = -heightLeft;
                 pdf.addPage();
                 pdf.addImage(canvas, 'PNG', 0, position, pdfWidth, renderHeight);
                 heightLeft -= pdfHeight;
             }
-            
             pdf.save(fileName);
-        }
-
-        function shareViaEmail(formType) {
-            const employeeName = document.getElementById('employeeName').value || 'Employee';
-            const subject = `${formType} signed by ${employeeName}`;
-            const body = `Dear Team,\n\nPlease find the signed ${formType} attached for your records.\n\nThis is a client-generated request. Please download the PDF from the form and attach it to this email before sending.\n\nThank you,\n${employeeName}`;
-            
-            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
     };
 </script>
