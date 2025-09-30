@@ -1,1 +1,121 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chesmi Groups - IT Forms Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom styles for the main index page */
+        .portal-container {
+            width: 100%;
+            max-width: 800px; /* Max width for content */
+            padding: 30px;
+            text-align: center;
+        }
+
+        .portal-header {
+            margin-bottom: 40px;
+        }
+
+        .portal-title {
+            color: var(--chesmi-dark-red);
+            font-size: 2.5em;
+            margin-top: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .form-card {
+            background-color: var(--chesmi-light-gray);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .form-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-card h3 {
+            color: var(--chesmi-red);
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+
+        .form-card p {
+            font-size: 0.9em;
+            color: #555;
+            flex-grow: 1;
+        }
+
+        .portal-link {
+            display: block;
+            background-color: var(--chesmi-red);
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .portal-link:hover {
+            background-color: var(--chesmi-dark-red);
+        }
+
+        /* Override A4 print styles for the landing page */
+        @media screen {
+            .a4-page {
+                min-height: auto;
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="a4-page portal-container">
+    <header class="portal-header">
+        <p class="logo-text">CHESMI GROUPS</p>
+        <h1 class="portal-title">IT Department Forms Portal</h1>
+        <p>Select the required form below to complete and print/save.</p>
+    </header>
+
+    <div class="form-grid">
+        <div class="form-card">
+            <h3>1. Employee Registration Form</h3>
+            <p>Used by the IT Department to set up a new employee with necessary system access and resources.</p>
+            <a href="employee-registration.html" class="portal-link">Open Registration Form</a>
+        </div>
+
+        <div class="form-card">
+            <h3>2. Laptop Acknowledgement Form</h3>
+            <p>To be signed by an employee acknowledging receipt, responsibility, and condition of their assigned laptop.</p>
+            <a href="laptop-acknowledgement.html" class="portal-link">Open Acknowledgement Form</a>
+        </div>
+
+        <div class="form-card">
+            <h3>3. Employee Asset Recovery Form</h3>
+            <p>Used to log the return of all company property, including assets and peripherals, upon resignation.</p>
+            <a href="asset-recovery.html" class="portal-link">Open Asset Recovery Form</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
