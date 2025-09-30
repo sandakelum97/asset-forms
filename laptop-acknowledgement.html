@@ -20,57 +20,71 @@
     <h2>Employee & Assignment Details</h2>
     <div class="form-group">
         <label for="epfNumber">EPF Number:</label>
-        <div class="input-container"><input type="text" id="epfNumber"></div>
+        <div class="input-container"><input type="text" id="epfNumber" placeholder="E.g., EPF-00102"></div>
     </div>
     <div class="form-group">
         <label for="employeeName">Employee Name:</label>
-        <div class="input-container"><input type="text" id="employeeName"></div>
+        <div class="input-container"><input type="text" id="employeeName" placeholder="E.g., Nimal Fernando"></div>
     </div>
     <div class="form-group">
         <label for="branch">Branch:</label>
-        <div class="input-container"><input type="text" id="branch"></div>
+        <div class="input-container"><input type="text" id="branch" placeholder="E.g., Head Office"></div>
     </div>
     <div class="form-group">
         <label for="department">Department:</label>
-        <div class="input-container"><input type="text" id="department"></div>
+        <div class="input-container"><input type="text" id="department" placeholder="E.g., Sales"></div>
     </div>
     <div class="form-group">
         <label for="designation">Designation:</label>
-        <div class="input-container"><input type="text" id="designation"></div>
+        <div class="input-container"><input type="text" id="designation" placeholder="E.g., Sales Manager"></div>
     </div>
 
     <h2>Laptop Details (Assigned IT Resource)</h2>
     <div class="form-group">
         <label for="laptopModel">Model:</label>
-        <div class="input-container"><input type="text" id="laptopModel" required></div>
+        <div class="input-container"><input type="text" id="laptopModel" placeholder="E.g., Dell Latitude 5420" required></div>
     </div>
     <div class="form-group">
         <label for="serialNumber">Serial Number:</label>
-        <div class="input-container"><input type="text" id="serialNumber" required></div>
+        <div class="input-container"><input type="text" id="serialNumber" placeholder="E.g., ABC-7362-XYZ" required></div>
     </div>
 
     <h3 style="margin-top: 25px;">Laptop Specification (Filled By IT Department)</h3>
     <table style="width: 80%;" class="spec-table">
         <tr><th style="width: 30%;">Item</th><th>Current Status/Spec</th></tr>
-        <tr><td>Processor</td><td><input type="text" name="specProcessor" placeholder="e.g., Core i5"></td></tr>
-        <tr><td>RAM</td><td><input type="text" name="specRAM" placeholder="e.g., 8GB"></td></tr>
-        <tr><td>ROM/HDD</td><td><input type="text" name="specROM" placeholder="e.g., 500GB SSD"></td></tr>
-        <tr><td>OS</td><td><input type="text" name="specOS" placeholder="e.g., WIN 11"></td></tr>
-        <tr><td>Laptop charger</td><td><input type="text" name="specCharger" placeholder="Yes/No"></td></tr>
-        <tr><td>Laptop Bag Status</td><td><input type="text" name="specBag" placeholder="OLD/NEW/N/A"></td></tr>
+        <tr><td>Processor</td><td><input type="text" name="specProcessor" placeholder="E.g., Core i7 11th Gen"></td></tr>
+        <tr><td>RAM</td><td><input type="text" name="specRAM" placeholder="E.g., 16GB DDR4"></td></tr>
+        <tr><td>ROM/HDD</td><td><input type="text" name="specROM" placeholder="E.g., 512GB NVMe SSD"></td></tr>
+        <tr><td>OS</td><td><input type="text" name="specOS" placeholder="E.g., Windows 10 Pro"></td></tr>
+        <tr><td>Laptop charger</td><td><input type="text" name="specCharger" placeholder="E.g., Yes / P/N: 45W-CHG"></td></tr>
+        <tr><td>Laptop Bag Status</td><td><input type="text" name="specBag" placeholder="E.g., NEW / OLD / N/A"></td></tr>
         <tr><td colspan="2" style="font-size: 0.9em; border-top: 1px solid #ccc; padding-top: 10px;">
-            Inventory Update Date: <input type="date" name="inventoryDate" style="width: auto;"> | 
-            Updated By: <input type="text" name="inventoryUpdater" placeholder="IT Staff Name">
+            Inventory Update Date: <div class="input-container" style="display: inline-block; width: 150px;"><input type="date" name="inventoryDate"></div> | 
+            Updated By: <div class="input-container" style="display: inline-block; width: 150px;"><input type="text" name="inventoryUpdater" placeholder="IT Staff Name"></div>
         </td></tr>
     </table>
 
-    <h2 style="margin-top: 30px;">User Acknowledgement</h2>
-    <div style="border: 1px solid #ccc; padding: 15px; font-size: 0.9em; line-height: 1.6; border-radius: 6px;">
-        <p style="margin: 0;">I am aware that I am being provided **Chesmi Group resources**; I will be responsible for the maintenance of the resources under the guidance of IT Division.</p>
-        <p style="margin: 5px 0 0 0;">I am fully aware that for any damages, problems or repair, which is required for the IT resources will be reported to **IT Division with approvals** (immediate Reporting Headend Manager) through email and the physical device, should be submitted for investigation.</p>
-        <p style="margin: 5px 0 0 0;">I am aware that I amiable for any **physical damages** caused to the provided IT resources.</p>
-        <p style="margin: 5px 0 0 0;">I am aware that Chesmi Group IT resources are for **official use and authorized purposes** related to assigned duties, which do not interfere or conflict with those assigned duties and do not violate law, regulation, or standards of conduct.</p>
-        <p style="margin: 5px 0 0 0;">I will complete required user training annually and as directed.</p>
+    <h2 style="margin-top: 30px;">User Acknowledgement (Employee Confirms Acceptance)</h2>
+    <div style="border: 1px solid #ccc; padding: 15px; font-size: 0.9em; line-height: 1.6; border-radius: 6px; background-color: var(--chesmi-light-gray);">
+        
+        <h3 style="margin-top: 0; font-size: 1em;">1. Resource Custody and Maintenance</h3>
+        <ul class="acknowledgement-list">
+            <li>**Custody and Responsibility:** The Employee is assigned custody of the specified Chesmi Group IT resources (e.g., laptop, peripherals) and accepts full responsibility for their proper handling and security.</li>
+            <li>**Maintenance and Care:** The Employee shall be responsible for the day-to-day care and maintenance of the assigned resources, strictly adhering to the procedures and technical guidance provided by the IT Division.</li>
+        </ul>
+        
+        <h3 style="margin-top: 15px; font-size: 1em;">2. Reporting and Damage Liability</h3>
+        <ul class="acknowledgement-list">
+            <li>**Reporting Requirements:** Any damage, malfunction, required repair, or loss of the assigned IT resources must be **immediately reported** to the IT Division. This report must be submitted via official email and include prior approval from the immediate Reporting Head and/or Manager. The physical device must be submitted for official investigation, if required.</li>
+            <li>**Liability for Damages:** The Employee acknowledges and accepts **full financial and operational liability** for any physical damage, loss, or deterioration caused to the assigned IT resources that results from negligence, misuse, or failure to follow IT policy.</li>
+        </ul>
+
+        <h3 style="margin-top: 15px; font-size: 1em;">3. Usage Policy and Compliance</h3>
+        <ul class="acknowledgement-list">
+            <li>**Authorized Use Only:** Chesmi Group IT resources are provided strictly for **official use and authorized business purposes** related to assigned duties. Personal use that interferes with assigned duties or violates company policy is prohibited.</li>
+            <li>**Legal Compliance:** The Employee guarantees that the use of these resources will not, in any circumstance, violate any applicable internal policies, local regulations, or the laws of the Democratic Socialist Republic of Sri Lanka.</li>
+            <li>**Training Mandate:** The Employee shall complete all required user training, including, but not limited to, information security and data handling, upon initial assignment and **annually thereafter**, or as directed by management.</li>
+        </ul>
     </div>
 
     <div class="signature-block">
@@ -90,29 +104,29 @@
 
     <h3 style="margin-top: 15px;">1. Physical Inspection (Check if in working condition/good state)</h3>
     <table class="checklist-table">
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Lid / Hinges Condition</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Screen (No scratches or disfigurement)</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Lid / Hinges Condition (Check for gaps or damage)</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Screen (Check for scratches, cracks, or disfigurement)</td></tr>
         <tr><td style="width: 50px;"><input type="checkbox"></td><td>Keyboard/Keys (All present and functional)</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Laptop Bag (If applicable)</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Laptop Bag (Condition Check - If applicable)</td></tr>
         <tr><td style="width: 50px;"><input type="checkbox"></td><td>Power Adaptor/Charger (No damage to wire or head)</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>General Exterior / Body Condition (Describe damage below)</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>General Exterior / Body Condition (Check for major scuffs or dents)</td></tr>
     </table>
     
     <div class="form-group" style="display: block; margin-top: 15px;">
-        <label for="conditionNotes" style="width: auto;">Description of any Scratches/Marks/Damage:</label>
-        <textarea id="conditionNotes" rows="2" style="width: 100%;"></textarea>
+        <label for="conditionNotes" style="width: auto; font-weight: 600;">Description of any Scratches/Marks/Damage Found:</label>
+        <textarea id="conditionNotes" rows="2" style="width: 100%;" placeholder="Enter details of any pre-existing permanent damage or marks."></textarea>
     </div>
 
     <h3 style="margin-top: 25px;">2. Functional Inspection (Check if working)</h3>
     <table class="checklist-table">
         <tr><td style="width: 50px;"><input type="checkbox"></td><td>Display Brightness / No dead pixels</td></tr>
         <tr><td style="width: 50px;"><input type="checkbox"></td><td>All keys and Trackpad/Mouse are working</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Wireless/Wi-Fi connectivity</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Wireless/Wi-Fi connectivity & Bluetooth</td></tr>
         <tr><td style="width: 50px;"><input type="checkbox"></td><td>Battery Health (Charged and holding charge)</td></tr>
-        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Operating System License/Activation</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Operating System License/Activation & Required Software (e.g., Antivirus)</td></tr>
     </table>
 
-    <p style="margin-top: 20px; font-style: italic;">I have checked the above items and, unless otherwise noted, found them to be in good working condition.</p>
+    <p style="margin-top: 20px; font-style: italic;">I confirm that I have physically inspected and functionally tested the device. Unless otherwise noted above, all items were found to be in good working condition.</p>
 
     <div class="signature-block">
         <div class="signature-field">
@@ -120,7 +134,7 @@
             <p class="signature-label">Tech Support Signature</p>
         </div>
         <div class="signature-field">
-            <div class="input-container"><input type="text" placeholder="Tech Support Name" id="techNameInput"></div>
+            <div class="input-container"><input type="text" placeholder="Tech Support Name (Print)" id="techNameInput"></div>
             <p class="signature-label">Tech Support Name</p>
         </div>
         <div class="signature-field">
@@ -132,11 +146,11 @@
 
 <div class="form-actions no-print">
     <button type="button" onclick="window.print()">💾 Save & Generate PDF / Print</button>
-    <p class="print-message">Use your browser's "Print" or "Save as PDF" function.</p>
+    <p class="print-message">Note: Use your browser's print function to generate a static PDF or hard copy.</p>
 </div>
 
 <script>
-    // No pre-filled dates, but retaining script structure if future date logic is added.
+    // No script logic needed beyond the structural HTML/CSS.
 </script>
 </body>
 </html>
