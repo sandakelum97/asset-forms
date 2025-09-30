@@ -139,6 +139,7 @@
 <div class="form-actions no-print">
     <button type="button" id="downloadPdfBtn">💾 Download as PDF</button>
     <button type="button" id="shareEmailBtn" class="email-btn">📧 Share via Email</button>
+    <button type="button" id="printBtn" class="print-btn">🖨️ Print Form</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -147,32 +148,56 @@
     window.onload = function () {
         const downloadBtn = document.getElementById('downloadPdfBtn');
         const shareBtn = document.getElementById('shareEmailBtn');
+        const printBtn = document.getElementById('printBtn');
 
         downloadBtn.addEventListener('click', () => generatePdf('Chesmi-Employee-Registration.pdf'));
         shareBtn.addEventListener('click', () => shareViaEmail('New Employee Registration'));
+        printBtn.addEventListener('click', () => window.print());
 
         async function generatePdf(fileName) {
             const { jsPDF } = window.jspdf;
             const formToCapture = document.querySelector('.a4-page');
             
-            // Add snapshot class to body for special styling
             document.body.classList.add('pdf-snapshot');
 
             const canvas = await html2canvas(formToCapture, {
                 scale: 2,
                 useCORS: true,
-                logging: false
+                logging: false,
+                width: formToCapture.scrollWidth,
+                height: formToCapture.scrollHeight
             });
 
-            // Remove snapshot class
             document.body.classList.remove('pdf-snapshot');
 
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdf = new jsPDF({
+                orientation: 'p',
+                unit: 'mm',
+                format: 'a4'
+            });
+
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = pdf.internal.pageSize.getHeight();
+            const canvasWidth = canvas.width;
+            const canvasHeight = canvas.height;
+            const canvasAspectRatio = canvasHeight / canvasWidth;
             
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            const renderHeight = pdfWidth * canvasAspectRatio;
+            let heightLeft = renderHeight;
+            let position = 0;
+
+            // Add the first page
+            pdf.addImage(canvas, 'PNG', 0, position, pdfWidth, renderHeight);
+            heightLeft -= pdfHeight;
+
+            // Add new pages if content is longer than one page
+            while (heightLeft > 0) {
+                position = -heightLeft;
+                pdf.addPage();
+                pdf.addImage(canvas, 'PNG', 0, position, pdfWidth, renderHeight);
+                heightLeft -= pdfHeight;
+            }
+            
             pdf.save(fileName);
         }
 
