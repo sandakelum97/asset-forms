@@ -95,31 +95,21 @@
         <hr id="page-break-element" style="margin-top: 30px; border-top: 1px solid #e0e0e0;">
 
         <h2>Laptop Condition Checklist <span style="font-weight:400; font-size: 0.8em;">(IT Department Use)</span></h2>
-
-        <h3 style="margin-top: 15px;">1. Physical Inspection <span style="font-weight:400; font-size: 0.8em;">(Check if in working condition/good state)</span></h3>
-        <table class="checklist-table">
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkHinges"></td><td>Lid / Hinges Condition (Check for gaps or damage)</td></tr>
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkScreen"></td><td>Screen (Check for scratches, cracks, or disfigurement)</td></tr>
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkKeyboard"></td><td>Keyboard/Keys (All present and functional)</td></tr>
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkBag"></td><td>Laptop Bag (Condition Check - If applicable)</td></tr>
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkAdapter"></td><td>Power Adaptor/Charger (No damage to wire or head)</td></tr>
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkBody"></td><td>General Exterior / Body Condition (Check for major scuffs or dents)</td></tr>
-        </table>
         
-        <div class="form-group" style="display: block; margin-top: 15px;">
-            <label for="conditionNotes" style="width: auto; font-weight: 600;">Description of any Scratches/Marks/Damage Found:</label>
-            <textarea id="conditionNotes" name="conditionNotes" rows="2" style="width: 100%;" placeholder="Enter details of any pre-existing permanent damage or marks."></textarea>
+        <div class="form-group">
+            <label>Overall Condition:</label>
+            <div class="input-container condition-radios">
+                <input type="radio" id="cond_excellent" name="overallCondition" value="Excellent"><label for="cond_excellent">Excellent</label>
+                <input type="radio" id="cond_good" name="overallCondition" value="Good" checked><label for="cond_good">Good</label>
+                <input type="radio" id="cond_fair" name="overallCondition" value="Fair"><label for="cond_fair">Fair</label>
+                <input type="radio" id="cond_damaged" name="overallCondition" value="Damaged"><label for="cond_damaged">Damaged</label>
+            </div>
         </div>
 
-        <h3 style="margin-top: 25px;">2. Functional Inspection <span style="font-weight:400; font-size: 0.8em;">(Check if working)</span></h3>
-        <table class="checklist-table">
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkDisplay"></td><td>Display Brightness / No dead pixels</td></tr>
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkTrackpad"></td><td>All keys and Trackpad/Mouse are working</td></tr>
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkWifi"></td><td>Wireless/Wi-Fi connectivity & Bluetooth</td></tr>
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkBattery"></td><td>Battery Health (Charged and holding charge)</td></tr>
-            <tr><td style="width: 50px;"><input type="checkbox" name="checkOS"></td><td>Operating System License/Activation & Required Software (e.g., Antivirus)</td></tr>
-        </table>
-
+        <div class="form-group" style="display: block; margin-top: 15px;">
+            <label for="conditionNotes" style="width: auto; font-weight: 600;">Notes on Condition (Describe any scratches, damage, or functional issues):</label>
+            <textarea id="conditionNotes" name="conditionNotes" rows="4" style="width: 100%;" placeholder="Leave blank if in excellent/good condition with no issues. Note any existing dents, deep scratches, or functional problems here."></textarea>
+        </div>
         <p style="margin-top: 20px; font-style: italic;">I confirm that I have physically inspected and functionally tested the device. Unless otherwise noted above, all items were found to be in good working condition.</p>
 
         <div class="signature-block">
@@ -182,7 +172,16 @@
             inputs.forEach(input => {
                 if (input.name) {
                     if (input.type === 'checkbox' || input.type === 'radio') {
-                        formData[input.name] = input.checked;
+                        if(input.checked) {
+                            // For radio buttons, only save the selected value
+                            if(input.type === 'radio') {
+                                formData[input.name] = input.value;
+                            } else {
+                                formData[input.name] = true;
+                            }
+                        } else if (input.type === 'checkbox') {
+                            formData[input.name] = false;
+                        }
                     } else {
                         formData[input.name] = input.value;
                     }
@@ -208,8 +207,18 @@
                     const data = JSON.parse(e.target.result);
                     for (const key in data) {
                         const input = document.querySelector(`[name="${key}"]`);
-                        if (input) {
-                            if (input.type === 'checkbox' || input.type === 'radio') {
+                        const radioInputs = document.querySelectorAll(`[name="${key}"]`);
+                        
+                        if (radioInputs.length > 1 && radioInputs[0].type === 'radio') {
+                            // Handle radio button group
+                            radioInputs.forEach(radio => {
+                                if (radio.value === data[key]) {
+                                    radio.checked = true;
+                                }
+                            });
+                        } else if (input) {
+                            // Handle other inputs
+                            if (input.type === 'checkbox') {
                                 input.checked = data[key];
                             } else {
                                 input.value = data[key];
