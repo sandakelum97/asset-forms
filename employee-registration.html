@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration - Chesmi Groups IT</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .access-table td:nth-child(2), 
+        .access-table td:nth-child(3) {
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<form class="a4-page" id="registrationForm">
+    <header>
+        <p class="logo-text">CHESMI GROUPS</p>
+        <h1>New Employee Registration for IT Department</h1>
+    </header>
+
+    <h2>Employee Information</h2>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+    </div>
+    <div class="form-group">
+        <label for="designation">Designation:</label>
+        <input type="text" id="designation" required>
+    </div>
+    <div class="form-group">
+        <label for="company">Company:</label>
+        <input type="text" id="company" value="Chesmi Groups" required>
+    </div>
+    <div class="form-group">
+        <label for="department">Department:</label>
+        <input type="text" id="department" value="IT Department" readonly>
+    </div>
+    <div class="form-group">
+        <label for="supervisor">Supervisor:</label>
+        <input type="text" id="supervisor" required>
+    </div>
+    <div class="form-group">
+        <label for="joiningDate">Joining Date:</label>
+        <input type="date" id="joiningDate">
+    </div>
+    <div class="form-group">
+        <label for="resignationDate">Resignation Date (if applicable):</label>
+        <input type="date" id="resignationDate">
+    </div>
+    <div class="form-group">
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" required>
+    </div>
+    <div class="form-group">
+        <label for="fingerId">Finger ID:</label>
+        <input type="text" id="fingerId">
+    </div>
+
+    <h2>Access Requirements (Mark 'Yes' or 'No')</h2>
+    <table class="access-table">
+        <thead>
+            <tr>
+                <th>Access Type</th>
+                <th>Yes</th>
+                <th>No</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nav Access:</td>
+                <td><input type="checkbox" name="navAccess" value="Yes"></td>
+                <td><input type="checkbox" name="navAccess" value="No"></td>
+            </tr>
+            <tr>
+                <td>QB Access:</td>
+                <td><input type="checkbox" name="qbAccess" value="Yes"></td>
+                <td><input type="checkbox" name="qbAccess" value="No"></td>
+            </tr>
+            <tr>
+                <td>CRM App Access:</td>
+                <td><input type="checkbox" name="crmAccess" value="Yes"></td>
+                <td><input type="checkbox" name="crmAccess" value="No"></td>
+            </tr>
+            <tr>
+                <td>Petty Cash App/FLEET APP Access:</td>
+                <td><input type="checkbox" name="pettyFleetAccess" value="Yes"></td>
+                <td><input type="checkbox" name="pettyFleetAccess" value="No"></td>
+            </tr>
+            <tr>
+                <td>Share Folder Access:</td>
+                <td><input type="checkbox" name="shareFolderAccess" value="Yes"></td>
+                <td><input type="checkbox" name="shareFolderAccess" value="No"></td>
+            </tr>
+            <tr>
+                <td>Laptop:</td>
+                <td><input type="checkbox" name="laptopAccess" value="Yes"></td>
+                <td><input type="checkbox" name="laptopAccess" value="No"></td>
+            </tr>
+            <tr>
+                <td>Email Access:</td>
+                <td><input type="checkbox" name="emailAccess" value="Yes"></td>
+                <td><input type="checkbox" name="emailAccess" value="No"></td>
+            </tr>
+            <tr>
+                <td>Fingerprint Access:</td>
+                <td><input type="checkbox" name="fingerprintAccess" value="Yes"></td>
+                <td><input type="checkbox" name="fingerprintAccess" value="No"></td>
+            </tr>
+            <tr>
+                <td>Mobile Phone:</td>
+                <td><input type="checkbox" name="mobilePhone" value="Yes"></td>
+                <td><input type="checkbox" name="mobilePhone" value="No"></td>
+            </tr>
+            <tr>
+                <td>SIM Card:</td>
+                <td><input type="checkbox" name="simCard" value="Yes"></td>
+                <td><input type="checkbox" name="simCard" value="No"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="signature-block">
+        <div class="signature-field">
+            <div class="signature-line"></div>
+            <p class="signature-label">IT Department, Chesmi Groups Signature</p>
+        </div>
+        <div class="signature-field">
+            <div class="signature-line"></div>
+            <p class="signature-label">Supervisor / Department Head, Chesmi Groups Signature</p>
+        </div>
+    </div>
+</form>
+
+<div class="form-actions no-print">
+    <button type="button" onclick="window.print()">💾 Save & Generate PDF / Print</button>
+    <p class="print-message">Use your browser's "Print" or "Save as PDF" function.</p>
+</div>
+</body>
+</html>
