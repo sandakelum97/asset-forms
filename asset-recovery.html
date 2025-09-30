@@ -16,7 +16,7 @@
         <h1>Employee Resignation - Company Property Return</h1>
     </header>
 
-    <h2>Employee Information (To be completed upon separation)</h2>
+    <h2>Employee Information <span style="font-weight:400; font-size: 0.8em;">(To be completed upon separation)</span></h2>
     <div class="form-group">
         <label for="fullName">Full Name:</label>
         <div class="input-container"><input type="text" id="fullName" placeholder="E.g., Sahan De Silva" required></div>
@@ -127,55 +127,14 @@
 </form>
 
 <div class="form-actions no-print">
-    <button type="button" onclick="generatePdf('Chesmi-Asset-Recovery.pdf')">💾 Download as PDF</button>
-    <button type="button" class="email-btn" onclick="shareViaEmail('Asset Recovery Form')">📧 Share via Email</button>
+    <button type="button" id="downloadPdfBtn">💾 Download as PDF</button>
+    <button type="button" id="shareEmailBtn" class="email-btn">📧 Share via Email</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-    // --- PDF Generation and Email Functions ---
-    async function generatePdf(fileName) {
-        const { jsPDF } = window.jspdf;
-        const formToCapture = document.querySelector('.a4-page');
-        const actionButtons = document.querySelector('.form-actions');
-
-        // Hide buttons before capture to keep the PDF clean
-        actionButtons.style.display = 'none';
-
-        const canvas = await html2canvas(formToCapture, {
-            scale: 2, // Increase scale for better quality
-            useCORS: true
-        });
-
-        // Show buttons again after capture
-        actionButtons.style.display = 'block';
-
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save(fileName);
-    }
-
-    function shareViaEmail(formType) {
-        const employeeName = document.getElementById('fullName').value || 'Employee';
-        const subject = `${formType} for ${employeeName}`;
-        const body = `Dear Team,\n\nPlease find the ${formType} attached for your review.\n\nThis is a client-generated request. Please download the PDF from the form and attach it to this email before sending.\n\nThank you,\n${employeeName}`;
-        
-        // Use mailto to open the default email client
-        window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }
-
-
     // --- Form Specific Functions ---
-    document.addEventListener('DOMContentLoaded', () => {
-        addAssetRow(); 
-        addAssetRow();
-    });
-
     function addAssetRow() {
         const tableBody = document.getElementById('assetsTableBody');
         const newRow = tableBody.insertRow();
@@ -194,6 +153,50 @@
             alert("You cannot remove the last asset row. At least one asset must be listed for clearance.");
         }
     }
+
+    // --- Main script execution ---
+    window.onload = function() {
+        // Add initial rows
+        addAssetRow();
+        addAssetRow();
+
+        const downloadBtn = document.getElementById('downloadPdfBtn');
+        const shareBtn = document.getElementById('shareEmailBtn');
+
+        downloadBtn.addEventListener('click', () => generatePdf('Chesmi-Asset-Recovery.pdf'));
+        shareBtn.addEventListener('click', () => shareViaEmail('Asset Recovery Form'));
+
+        async function generatePdf(fileName) {
+            const { jsPDF } = window.jspdf;
+            const formToCapture = document.querySelector('.a4-page');
+
+            document.body.classList.add('pdf-snapshot');
+
+            const canvas = await html2canvas(formToCapture, {
+                scale: 2,
+                useCORS: true,
+                logging: false
+            });
+
+            document.body.classList.remove('pdf-snapshot');
+
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+            
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save(fileName);
+        }
+
+        function shareViaEmail(formType) {
+            const employeeName = document.getElementById('fullName').value || 'Employee';
+            const subject = `${formType} for ${employeeName}`;
+            const body = `Dear Team,\n\nPlease find the ${formType} attached for your review.\n\nThis is a client-generated request. Please download the PDF from the form and attach it to this email before sending.\n\nThank you,\n${employeeName}`;
+            
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    };
 </script>
 </body>
 </html>
