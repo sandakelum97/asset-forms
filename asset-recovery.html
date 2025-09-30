@@ -10,7 +10,10 @@
 
 <form class="a4-page" id="recoveryForm">
     <header>
-        <p class="logo-text">CHESMI GROUPS</p>
+        <div class="logo-container">
+            <img src="chesmi-logo.png" alt="Chesmi Logo">
+            <p class="logo-text">CHESMI GROUPS</p>
+        </div>
         <h1>Employee Resignation - Company Property Return</h1>
     </header>
 
@@ -37,7 +40,7 @@
     </div>
 
     <h2>Related Assets</h2>
-    <table>
+    <table id="assetsTable">
         <thead>
             <tr>
                 <th>Codename</th>
@@ -78,7 +81,7 @@
             <p class="signature-label">Name</p>
         </div>
         <div class="signature-field">
-            <input type="text" style="text-align: center;" id="employeeDateInput">
+            <input type="date" style="text-align: center;" id="employeeDateInput">
             <p class="signature-label">Date</p>
         </div>
     </div>
@@ -93,7 +96,7 @@
             <p class="signature-label">Name</p>
         </div>
         <div class="signature-field">
-            <input type="text" style="text-align: center;" id="itDateInput">
+            <input type="date" style="text-align: center;" id="itDateInput">
             <p class="signature-label">Date</p>
         </div>
     </div>
@@ -106,8 +109,11 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        addAssetRow(); // Add one row by default
-        // Set current date for signature date fields (can be changed by user)
+        // Initialize with one row and set dates
+        const tableBody = document.getElementById('assetsTableBody');
+        if (tableBody.rows.length === 0) {
+            addAssetRow(); 
+        }
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('employeeDateInput').value = today;
         document.getElementById('itDateInput').value = today;
