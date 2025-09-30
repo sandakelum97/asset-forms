@@ -12,7 +12,6 @@
     <header>
         <div class="logo-container">
             <img src="chesmi-logo.png" alt="Chesmi Logo">
-            <p class="logo-text">CHESMI GROUPS</p>
         </div>
         <h1>Employee Laptop Acknowledgement Form</h1>
     </header>
@@ -83,7 +82,7 @@
         <ul class="acknowledgement-list">
             <li>**Authorized Use Only:** Chesmi Group IT resources are provided strictly for **official use and authorized business purposes** related to assigned duties. Personal use that interferes with assigned duties or violates company policy is prohibited.</li>
             <li>**Legal Compliance:** The Employee guarantees that the use of these resources will not, in any circumstance, violate any applicable internal policies, local regulations, or the laws of the Democratic Socialist Republic of Sri Lanka.</li>
-            <li>**Training Mandate:** The Employee shall complete all required user training, including, but not limited to, information security and data handling, upon initial assignment and **annually thereafter**, or as directed by management.</li>
+            <li>**Training Mandate:** The Employee shall complete all required user training, including, but not to, information security and data handling, upon initial assignment and **annually thereafter**, or as directed by management.</li>
         </ul>
     </div>
 
@@ -145,12 +144,38 @@
 </form>
 
 <div class="form-actions no-print">
-    <button type="button" onclick="window.print()">💾 Save & Generate PDF / Print</button>
-    <p class="print-message">Note: Use your browser's print function to generate a static PDF or hard copy.</p>
+    <button type="button" onclick="generatePdf('Chesmi-Laptop-Acknowledgement.pdf')">💾 Download as PDF</button>
+    <button type="button" class="email-btn" onclick="shareViaEmail('Laptop Acknowledgement')">📧 Share via Email</button>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-    // No script logic needed beyond the structural HTML/CSS.
+    async function generatePdf(fileName) {
+        const { jsPDF } = window.jspdf;
+        const formToCapture = document.querySelector('.a4-page');
+        const actionButtons = document.querySelector('.form-actions');
+
+        actionButtons.style.display = 'none';
+        const canvas = await html2canvas(formToCapture, { scale: 2, useCORS: true });
+        actionButtons.style.display = 'block';
+
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(fileName);
+    }
+
+    function shareViaEmail(formType) {
+        const employeeName = document.getElementById('employeeName').value || 'Employee';
+        const subject = `${formType} signed by ${employeeName}`;
+        const body = `Dear Team,\n\nPlease find the signed ${formType} attached for your records.\n\nThis is a client-generated request. Please download the PDF from the form and attach it to this email before sending.\n\nThank you,\n${employeeName}`;
+        
+        window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
 </script>
 </body>
 </html>
