@@ -49,8 +49,7 @@
             </tr>
         </thead>
         <tbody id="assetsTableBody">
-            <!-- Asset rows will be added here by JavaScript -->
-        </tbody>
+            </tbody>
     </table>
     <div style="text-align: right; margin-top: 10px;">
         <button type="button" class="no-print" onclick="addAssetRow()">+ Add Another Asset</button>
@@ -130,32 +129,32 @@
 
 <div class="form-actions no-print">
     <button type="button" onclick="window.print()">💾 Save & Generate PDF / Print</button>
-    <p class="print-message">Note: Use your browser's print function to generate a static PDF or hard copy.</p>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        addAssetRow('Laptop', 'XYZ-1234567'); 
-        addAssetRow('Monitor', 'MON-7890');
+        addAssetRow(); 
+        addAssetRow();
     });
 
-    function addAssetRow(codename = '', serialNumber = '') {
+    function addAssetRow() {
         const tableBody = document.getElementById('assetsTableBody');
         const newRow = tableBody.insertRow();
         newRow.innerHTML = `
-            <td><div class="input-container"><input type="text" name="codename" placeholder="${codename}" required></div></td>
-            <td><div class="input-container"><input type="text" name="serialNumber" placeholder="${serialNumber}" required></div></td>
+            <td><div class="input-container"><input type="text" name="codename" placeholder="e.g., Laptop, Monitor" required></div></td>
+            <td><div class="input-container"><input type="text" name="serialNumber" placeholder="e.g., SN-12345678" required></div></td>
             <td class="no-print" style="text-align: center;"><button type="button" class="remove-asset-btn" onclick="removeAssetRow(this)">Remove</button></td>
         `;
     }
 
     function removeAssetRow(button) {
-        const row = button.parentNode.parentNode;
-        if (document.getElementById('assetsTableBody').rows.length > 1) {
-            row.remove();
+        const tableBody = document.getElementById('assetsTableBody');
+        if (tableBody.rows.length > 1) {
+            // .closest('tr') is a reliable way to find the parent row
+            button.closest('tr').remove();
         } else {
-            // Placeholder text (not an actual alert, but a console message for digital environment)
-            console.warn("Cannot remove the last asset row. Must list at least one asset for clearance.");
+            // This provides a much better user experience
+            alert("You cannot remove the last asset row. At least one asset must be listed for clearance.");
         }
     }
 </script>
