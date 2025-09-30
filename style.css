@@ -318,3 +318,59 @@ a.portal-link:hover {
 .email-btn:hover {
     background-color: #0056b3 !important;
 }
+
+
+/* --- PDF Snapshot Styles --- */
+/* This class is added via JavaScript only during PDF generation */
+.pdf-snapshot .form-group {
+    display: grid;
+    grid-template-columns: 180px 1fr; /* Rigid grid to prevent collapsing */
+    align-items: center;
+}
+
+.pdf-snapshot h2 {
+    /* Prevents awkward wrapping of headings */
+    display: flex;
+    white-space: nowrap;
+}
+
+.pdf-snapshot input[type="text"],
+.pdf-snapshot input[type="email"],
+.pdf-snapshot input[type="date"],
+.pdf-snapshot textarea {
+    /* Make inputs look like underlined text for the PDF */
+    border: none !important;
+    border-bottom: 1px solid #555 !important;
+    border-radius: 0 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 2px 0 !important;
+}
+
+/* Simple rendering for checkboxes and radio buttons to avoid strange characters */
+.pdf-snapshot input[type="checkbox"],
+.pdf-snapshot input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #333;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+}
+.pdf-snapshot input[type="radio"] {
+    border-radius: 50%;
+}
+.pdf-snapshot input[type="checkbox"]:checked::before,
+.pdf-snapshot input[type="radio"]:checked::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: #333;
+    margin: 2px;
+}
+.pdf-snapshot input[type="radio"]:checked::before {
+    border-radius: 50%;
+}
