@@ -23,7 +23,7 @@
         <h1>New Employee Registration for IT Department</h1>
     </header>
 
-    <h2>Employee Information (To be completed by HR/HOD)</h2>
+    <h2>Employee Information <span style="font-weight:400; font-size: 0.8em;">(To be completed by HR/HOD)</span></h2>
     <div class="form-group">
         <label for="name">Name:</label>
         <div class="input-container"><input type="text" id="name" placeholder="E.g., Kamal Perera" required></div>
@@ -61,7 +61,7 @@
         <div class="input-container"><input type="text" id="fingerId" placeholder="E.g., 4056 (To be filled by HR)"></div>
     </div>
 
-    <h2>Access Requirements (Mark 'Yes' or 'No' - To be completed by IT)</h2>
+    <h2>Access Requirements <span style="font-weight:400; font-size: 0.8em;">(Mark 'Yes' or 'No' - To be completed by IT)</span></h2>
     <table class="access-table">
         <thead>
             <tr>
@@ -137,38 +137,53 @@
 </form>
 
 <div class="form-actions no-print">
-    <button type="button" onclick="generatePdf('Chesmi-Employee-Registration.pdf')">💾 Download as PDF</button>
-    <button type="button" class="email-btn" onclick="shareViaEmail('New Employee Registration')">📧 Share via Email</button>
+    <button type="button" id="downloadPdfBtn">💾 Download as PDF</button>
+    <button type="button" id="shareEmailBtn" class="email-btn">📧 Share via Email</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-    async function generatePdf(fileName) {
-        const { jsPDF } = window.jspdf;
-        const formToCapture = document.querySelector('.a4-page');
-        const actionButtons = document.querySelector('.form-actions');
+    window.onload = function () {
+        const downloadBtn = document.getElementById('downloadPdfBtn');
+        const shareBtn = document.getElementById('shareEmailBtn');
 
-        actionButtons.style.display = 'none';
-        const canvas = await html2canvas(formToCapture, { scale: 2, useCORS: true });
-        actionButtons.style.display = 'block';
+        downloadBtn.addEventListener('click', () => generatePdf('Chesmi-Employee-Registration.pdf'));
+        shareBtn.addEventListener('click', () => shareViaEmail('New Employee Registration'));
 
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save(fileName);
-    }
+        async function generatePdf(fileName) {
+            const { jsPDF } = window.jspdf;
+            const formToCapture = document.querySelector('.a4-page');
+            
+            // Add snapshot class to body for special styling
+            document.body.classList.add('pdf-snapshot');
 
-    function shareViaEmail(formType) {
-        const employeeName = document.getElementById('name').value || 'New Employee';
-        const subject = `${formType} for ${employeeName}`;
-        const body = `Dear Team,\n\nPlease find the ${formType} details attached for your review and processing.\n\nThis is a client-generated request. Please download the PDF from the form and attach it to this email before sending.\n\nThank you.`;
-        
-        window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }
+            const canvas = await html2canvas(formToCapture, {
+                scale: 2,
+                useCORS: true,
+                logging: false
+            });
+
+            // Remove snapshot class
+            document.body.classList.remove('pdf-snapshot');
+
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+            
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save(fileName);
+        }
+
+        function shareViaEmail(formType) {
+            const employeeName = document.getElementById('name').value || 'New Employee';
+            const subject = `${formType} for ${employeeName}`;
+            const body = `Dear Team,\n\nPlease find the ${formType} details attached for your review and processing.\n\nThis is a client-generated request. Please download the PDF from the form and attach it to this email before sending.\n\nThank you.`;
+            
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    };
 </script>
 </body>
 </html>
