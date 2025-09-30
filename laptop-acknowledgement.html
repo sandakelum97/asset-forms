@@ -48,7 +48,7 @@
         <div class="input-container"><input type="text" id="serialNumber" placeholder="E.g., ABC-7362-XYZ" required></div>
     </div>
 
-    <h3 style="margin-top: 25px;">Laptop Specification (Filled By IT Department)</h3>
+    <h3>Laptop Specification <span style="font-weight:400; font-size: 0.8em;">(Filled By IT Department)</span></h3>
     <table style="width: 80%;" class="spec-table">
         <tr><th style="width: 30%;">Item</th><th>Current Status/Spec</th></tr>
         <tr><td>Processor</td><td><input type="text" name="specProcessor" placeholder="E.g., Core i7 11th Gen"></td></tr>
@@ -63,26 +63,26 @@
         </td></tr>
     </table>
 
-    <h2 style="margin-top: 30px;">User Acknowledgement (Employee Confirms Acceptance)</h2>
-    <div style="border: 1px solid #ccc; padding: 15px; font-size: 0.9em; line-height: 1.6; border-radius: 6px; background-color: var(--chesmi-light-gray);">
+    <h2>User Acknowledgement <span style="font-weight:400; font-size: 0.8em;">(Employee Confirms Acceptance)</span></h2>
+    <div style="border: 1px solid #ccc; padding: 15px; font-size: 0.9em; line-height: 1.6; border-radius: 6px; background-color: #fdfdfd;">
         
         <h3 style="margin-top: 0; font-size: 1em;">1. Resource Custody and Maintenance</h3>
         <ul class="acknowledgement-list">
-            <li>**Custody and Responsibility:** The Employee is assigned custody of the specified Chesmi Group IT resources (e.g., laptop, peripherals) and accepts full responsibility for their proper handling and security.</li>
-            <li>**Maintenance and Care:** The Employee shall be responsible for the day-to-day care and maintenance of the assigned resources, strictly adhering to the procedures and technical guidance provided by the IT Division.</li>
+            <li><strong>Custody and Responsibility:</strong> The Employee is assigned custody of the specified Chesmi Group IT resources (e.g., laptop, peripherals) and accepts full responsibility for their proper handling and security.</li>
+            <li><strong>Maintenance and Care:</strong> The Employee shall be responsible for the day-to-day care and maintenance of the assigned resources, strictly adhering to the procedures and technical guidance provided by the IT Division.</li>
         </ul>
         
         <h3 style="margin-top: 15px; font-size: 1em;">2. Reporting and Damage Liability</h3>
         <ul class="acknowledgement-list">
-            <li>**Reporting Requirements:** Any damage, malfunction, required repair, or loss of the assigned IT resources must be **immediately reported** to the IT Division. This report must be submitted via official email and include prior approval from the immediate Reporting Head and/or Manager. The physical device must be submitted for official investigation, if required.</li>
-            <li>**Liability for Damages:** The Employee acknowledges and accepts **full financial and operational liability** for any physical damage, loss, or deterioration caused to the assigned IT resources that results from negligence, misuse, or failure to follow IT policy.</li>
+            <li><strong>Reporting Requirements:</strong> Any damage, malfunction, required repair, or loss of the assigned IT resources must be <strong>immediately reported</strong> to the IT Division. This report must be submitted via official email and include prior approval from the immediate Reporting Head and/or Manager. The physical device must be submitted for official investigation, if required.</li>
+            <li><strong>Liability for Damages:</strong> The Employee acknowledges and accepts <strong>full financial and operational liability</strong> for any physical damage, loss, or deterioration caused to the assigned IT resources that results from negligence, misuse, or failure to follow IT policy.</li>
         </ul>
 
         <h3 style="margin-top: 15px; font-size: 1em;">3. Usage Policy and Compliance</h3>
         <ul class="acknowledgement-list">
-            <li>**Authorized Use Only:** Chesmi Group IT resources are provided strictly for **official use and authorized business purposes** related to assigned duties. Personal use that interferes with assigned duties or violates company policy is prohibited.</li>
-            <li>**Legal Compliance:** The Employee guarantees that the use of these resources will not, in any circumstance, violate any applicable internal policies, local regulations, or the laws of the Democratic Socialist Republic of Sri Lanka.</li>
-            <li>**Training Mandate:** The Employee shall complete all required user training, including, but not to, information security and data handling, upon initial assignment and **annually thereafter**, or as directed by management.</li>
+            <li><strong>Authorized Use Only:</strong> Chesmi Group IT resources are provided strictly for <strong>official use and authorized business purposes</strong> related to assigned duties. Personal use that interferes with assigned duties or violates company policy is prohibited.</li>
+            <li><strong>Legal Compliance:</strong> The Employee guarantees that the use of these resources will not, in any circumstance, violate any applicable internal policies, local regulations, or the laws of the Democratic Socialist Republic of Sri Lanka.</li>
+            <li><strong>Training Mandate:</strong> The Employee shall complete all required user training, including, but not limited to, information security and data handling, upon initial assignment and <strong>annually thereafter</strong>, or as directed by management.</li>
         </ul>
     </div>
 
@@ -99,9 +99,9 @@
     
     <hr style="margin-top: 30px; border-top: 1px solid #e0e0e0;">
 
-    <h2>Laptop Condition Checklist (IT Department Use)</h2>
+    <h2>Laptop Condition Checklist <span style="font-weight:400; font-size: 0.8em;">(IT Department Use)</span></h2>
 
-    <h3 style="margin-top: 15px;">1. Physical Inspection (Check if in working condition/good state)</h3>
+    <h3 style="margin-top: 15px;">1. Physical Inspection <span style="font-weight:400; font-size: 0.8em;">(Check if in working condition/good state)</span></h3>
     <table class="checklist-table">
         <tr><td style="width: 50px;"><input type="checkbox"></td><td>Lid / Hinges Condition (Check for gaps or damage)</td></tr>
         <tr><td style="width: 50px;"><input type="checkbox"></td><td>Screen (Check for scratches, cracks, or disfigurement)</td></tr>
@@ -116,7 +116,7 @@
         <textarea id="conditionNotes" rows="2" style="width: 100%;" placeholder="Enter details of any pre-existing permanent damage or marks."></textarea>
     </div>
 
-    <h3 style="margin-top: 25px;">2. Functional Inspection (Check if working)</h3>
+    <h3 style="margin-top: 25px;">2. Functional Inspection <span style="font-weight:400; font-size: 0.8em;">(Check if working)</span></h3>
     <table class="checklist-table">
         <tr><td style="width: 50px;"><input type="checkbox"></td><td>Display Brightness / No dead pixels</td></tr>
         <tr><td style="width: 50px;"><input type="checkbox"></td><td>All keys and Trackpad/Mouse are working</td></tr>
@@ -144,38 +144,51 @@
 </form>
 
 <div class="form-actions no-print">
-    <button type="button" onclick="generatePdf('Chesmi-Laptop-Acknowledgement.pdf')">💾 Download as PDF</button>
-    <button type="button" class="email-btn" onclick="shareViaEmail('Laptop Acknowledgement')">📧 Share via Email</button>
+    <button type="button" id="downloadPdfBtn">💾 Download as PDF</button>
+    <button type="button" id="shareEmailBtn" class="email-btn">📧 Share via Email</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-    async function generatePdf(fileName) {
-        const { jsPDF } = window.jspdf;
-        const formToCapture = document.querySelector('.a4-page');
-        const actionButtons = document.querySelector('.form-actions');
+    window.onload = function () {
+        const downloadBtn = document.getElementById('downloadPdfBtn');
+        const shareBtn = document.getElementById('shareEmailBtn');
 
-        actionButtons.style.display = 'none';
-        const canvas = await html2canvas(formToCapture, { scale: 2, useCORS: true });
-        actionButtons.style.display = 'block';
+        downloadBtn.addEventListener('click', () => generatePdf('Chesmi-Laptop-Acknowledgement.pdf'));
+        shareBtn.addEventListener('click', () => shareViaEmail('Laptop Acknowledgement'));
 
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save(fileName);
-    }
+        async function generatePdf(fileName) {
+            const { jsPDF } = window.jspdf;
+            const formToCapture = document.querySelector('.a4-page');
 
-    function shareViaEmail(formType) {
-        const employeeName = document.getElementById('employeeName').value || 'Employee';
-        const subject = `${formType} signed by ${employeeName}`;
-        const body = `Dear Team,\n\nPlease find the signed ${formType} attached for your records.\n\nThis is a client-generated request. Please download the PDF from the form and attach it to this email before sending.\n\nThank you,\n${employeeName}`;
-        
-        window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }
+            document.body.classList.add('pdf-snapshot');
+            
+            const canvas = await html2canvas(formToCapture, {
+                scale: 2,
+                useCORS: true,
+                logging: false
+            });
+            
+            document.body.classList.remove('pdf-snapshot');
+
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+            
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save(fileName);
+        }
+
+        function shareViaEmail(formType) {
+            const employeeName = document.getElementById('employeeName').value || 'Employee';
+            const subject = `${formType} signed by ${employeeName}`;
+            const body = `Dear Team,\n\nPlease find the signed ${formType} attached for your records.\n\nThis is a client-generated request. Please download the PDF from the form and attach it to this email before sending.\n\nThank you,\n${employeeName}`;
+            
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    };
 </script>
 </body>
 </html>
