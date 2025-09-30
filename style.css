@@ -1,0 +1,210 @@
+:root {
+    /* Chesmi Brand Color (based on your logo) */
+    --chesmi-red: #cc3333;
+    --chesmi-dark-red: #a32a2a;
+    --chesmi-light-gray: #f4f4f4;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+}
+
+/* A4 Page Styling for print and web display */
+.a4-page {
+    width: 210mm; /* A4 width */
+    min-height: 297mm; /* A4 height */
+    background-color: white;
+    box-shadow: 0 0 5mm rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    padding: 20mm;
+    box-sizing: border-box;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    border-bottom: 3px solid var(--chesmi-red);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.logo-text {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--chesmi-dark-red);
+    margin: 0;
+}
+
+h2 {
+    color: var(--chesmi-dark-red);
+    border-left: 5px solid var(--chesmi-red);
+    padding-left: 10px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+/* Form Element Styling */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.form-group label {
+    font-weight: bold;
+    width: 150px; /* Standardize label width */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    min-width: 200px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: var(--chesmi-light-gray);
+    color: var(--chesmi-dark-red);
+    padding: 8px;
+    text-align: left;
+}
+
+td {
+    padding: 8px;
+}
+
+/* Checkbox/Radio Styling */
+.checkbox-group, .radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.checkbox-group label, .radio-group label {
+    font-weight: normal;
+    width: auto;
+}
+
+/* Signature Styling */
+.signature-block {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px dashed #999;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.signature-field {
+    flex: 1;
+    text-align: center;
+}
+
+.signature-line {
+    border-bottom: 1px solid #000;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.signature-label {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* Button Styling (Hide when printing) */
+.form-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    z-index: 10;
+}
+
+.form-actions button {
+    background-color: var(--chesmi-red);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.form-actions button:hover {
+    background-color: var(--chesmi-dark-red);
+}
+
+.print-message {
+    font-size: 0.8em;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Print Specific Styles */
+@media print {
+    body {
+        background-color: white;
+    }
+    .a4-page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        min-height: auto;
+        padding: 15mm; /* Adjusted padding for better fit */
+    }
+    .form-actions {
+        display: none; /* Hide buttons when printing */
+    }
+    .no-print {
+        display: none !important;
+    }
+    /* Ensure form inputs look like lines for signing */
+    input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]), 
+    textarea, 
+    select {
+        border: none !important;
+        border-bottom: 1px solid #000 !important;
+        background-color: transparent !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+    }
+    /* Hide 'X' button on asset recovery form when printing */
+    .remove-asset-btn {
+        display: none;
+    }
+}
