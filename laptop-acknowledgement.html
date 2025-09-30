@@ -14,60 +14,63 @@
             <img src="chesmi-logo.png" alt="Chesmi Logo">
             <p class="logo-text">CHESMI GROUPS</p>
         </div>
-        <h1>Laptop Acknowledgement Form</h1>
+        <h1>Employee Laptop Acknowledgement Form</h1>
     </header>
 
     <h2>Employee & Assignment Details</h2>
     <div class="form-group">
         <label for="epfNumber">EPF Number:</label>
-        <input type="text" id="epfNumber">
+        <div class="input-container"><input type="text" id="epfNumber"></div>
     </div>
     <div class="form-group">
         <label for="employeeName">Employee Name:</label>
-        <input type="text" id="employeeName">
+        <div class="input-container"><input type="text" id="employeeName"></div>
     </div>
     <div class="form-group">
         <label for="branch">Branch:</label>
-        <input type="text" id="branch">
+        <div class="input-container"><input type="text" id="branch"></div>
     </div>
     <div class="form-group">
         <label for="department">Department:</label>
-        <input type="text" id="department" value="IT Department" readonly>
+        <div class="input-container"><input type="text" id="department"></div>
     </div>
     <div class="form-group">
         <label for="designation">Designation:</label>
-        <input type="text" id="designation">
+        <div class="input-container"><input type="text" id="designation"></div>
     </div>
 
     <h2>Laptop Details (Assigned IT Resource)</h2>
     <div class="form-group">
         <label for="laptopModel">Model:</label>
-        <input type="text" id="laptopModel" value="Dell Latitude 3500">
+        <div class="input-container"><input type="text" id="laptopModel" required></div>
     </div>
     <div class="form-group">
         <label for="serialNumber">Serial Number:</label>
-        <input type="text" id="serialNumber" value="F9KX003" required>
+        <div class="input-container"><input type="text" id="serialNumber" required></div>
     </div>
 
-    <h3 style="margin-top: 25px;">Laptop Spec: - (This section fills By IT Department)</h3>
-    <table style="width: 50%;" class="spec-table">
-        <tr><th>Item</th><th>Current Status</th></tr>
-        <tr><td>Processor</td><td>Core i5</td></tr>
-        <tr><td>RAM</td><td>8GB</td></tr>
-        <tr><td>ROM/HDD</td><td>500GB HDD</td></tr>
-        <tr><td>OS</td><td>WIN 11</td></tr>
-        <tr><td>Laptop charger</td><td>Yes</td></tr>
-        <tr><td>Laptop Bag</td><td>NEW YES</td></tr>
-        <tr><td colspan="2" style="font-size: 0.9em; border-top: 1px solid #ccc;">New Inventory Update date - 08/04/2025. Updated By - SIDESH</td></tr>
+    <h3 style="margin-top: 25px;">Laptop Specification (Filled By IT Department)</h3>
+    <table style="width: 80%;" class="spec-table">
+        <tr><th style="width: 30%;">Item</th><th>Current Status/Spec</th></tr>
+        <tr><td>Processor</td><td><input type="text" name="specProcessor" placeholder="e.g., Core i5"></td></tr>
+        <tr><td>RAM</td><td><input type="text" name="specRAM" placeholder="e.g., 8GB"></td></tr>
+        <tr><td>ROM/HDD</td><td><input type="text" name="specROM" placeholder="e.g., 500GB SSD"></td></tr>
+        <tr><td>OS</td><td><input type="text" name="specOS" placeholder="e.g., WIN 11"></td></tr>
+        <tr><td>Laptop charger</td><td><input type="text" name="specCharger" placeholder="Yes/No"></td></tr>
+        <tr><td>Laptop Bag Status</td><td><input type="text" name="specBag" placeholder="OLD/NEW/N/A"></td></tr>
+        <tr><td colspan="2" style="font-size: 0.9em; border-top: 1px solid #ccc; padding-top: 10px;">
+            Inventory Update Date: <input type="date" name="inventoryDate" style="width: auto;"> | 
+            Updated By: <input type="text" name="inventoryUpdater" placeholder="IT Staff Name">
+        </td></tr>
     </table>
 
     <h2 style="margin-top: 30px;">User Acknowledgement</h2>
-    <div style="border: 1px solid #ccc; padding: 10px; font-size: 0.9em; line-height: 1.5;">
-        <p style="margin: 0;">I am aware that I am being provided **Chesmi Group resources**; [cite_start]I will be responsible for the maintenance of the resources under the guidance of IT Division. [cite: 16, 17]</p>
-        [cite_start]<p style="margin: 0;">I am fully aware that for any damages, problems or repair, which is required for the IT resources will be reported to **IT Division with approvals** (immediate Reporting Headend Manager) through email and the physical device, should be submitted for investigation. [cite: 18]</p>
-        [cite_start]<p style="margin: 0;">I am aware that I amiable for any **physical damages** caused to the provided IT resources. [cite: 19]</p>
-        [cite_start]<p style="margin: 0;">I am aware that Chesmi Group IT resources are for **official use and authorized purposes** related to assigned duties, which do not interfere or conflict with those assigned duties and do not violate law, regulation, or standards of conduct. [cite: 20]</p>
-        [cite_start]<p style="margin: 0;">I will complete required user training annually and as directed. [cite: 21]</p>
+    <div style="border: 1px solid #ccc; padding: 15px; font-size: 0.9em; line-height: 1.6; border-radius: 6px;">
+        <p style="margin: 0;">I am aware that I am being provided **Chesmi Group resources**; I will be responsible for the maintenance of the resources under the guidance of IT Division.</p>
+        <p style="margin: 5px 0 0 0;">I am fully aware that for any damages, problems or repair, which is required for the IT resources will be reported to **IT Division with approvals** (immediate Reporting Headend Manager) through email and the physical device, should be submitted for investigation.</p>
+        <p style="margin: 5px 0 0 0;">I am aware that I amiable for any **physical damages** caused to the provided IT resources.</p>
+        <p style="margin: 5px 0 0 0;">I am aware that Chesmi Group IT resources are for **official use and authorized purposes** related to assigned duties, which do not interfere or conflict with those assigned duties and do not violate law, regulation, or standards of conduct.</p>
+        <p style="margin: 5px 0 0 0;">I will complete required user training annually and as directed.</p>
     </div>
 
     <div class="signature-block">
@@ -76,55 +79,53 @@
             <p class="signature-label">Employee Signature</p>
         </div>
         <div class="signature-field">
-            <input type="date" style="text-align: center;" id="ackDateInput">
+            <div class="input-container"><input type="date" id="ackDateInput"></div>
             <p class="signature-label">Date</p>
         </div>
     </div>
     
-    <hr style="margin-top: 30px;">
+    <hr style="margin-top: 30px; border-top: 1px solid #e0e0e0;">
 
-    <h2>Laptop Checklist (IT Department Use)</h2>
+    <h2>Laptop Condition Checklist (IT Department Use)</h2>
 
-    <h3 style="margin-top: 15px;">1. External Inspection (Check if in working condition)</h3>
-    <table class="access-table">
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Lid (does not close properly, gap at hinge between screen and bottom of frame) [cite: 31]</td></tr>
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Screen (any type of disfigurement, scratches) [cite: 31]</td></tr>
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Keyboard/keys (any loose or missing, unidentifiable no letter on key) [cite: 31]</td></tr>
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Laptop Bag (tears, broken handle, zippers not working properly) [cite: 31]</td></tr>
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Adaptor/charger (break in wire, damage to charger) [cite: 31]</td></tr>
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Other (Describe)[cite: 32]: <input type="text" style="width: 80%; border: none; border-bottom: 1px solid #000;"></td></tr>
+    <h3 style="margin-top: 15px;">1. Physical Inspection (Check if in working condition/good state)</h3>
+    <table class="checklist-table">
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Lid / Hinges Condition</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Screen (No scratches or disfigurement)</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Keyboard/Keys (All present and functional)</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Laptop Bag (If applicable)</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Power Adaptor/Charger (No damage to wire or head)</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>General Exterior / Body Condition (Describe damage below)</td></tr>
     </table>
-
-    <h3 style="margin-top: 25px;">2. Laptop Condition (Check if in fairly good condition)</h3>
-    <div class="checkbox-group" style="flex-direction: column;">
-        [cite_start]<label><input type="checkbox"> Exterior [cite: 38]</label>
-        [cite_start]<label><input type="checkbox"> Screen [cite: 40]</label>
-        [cite_start]<label><input type="checkbox"> Keyboard/Trackpad [cite: 41]</label>
-    </div>
-    <div class="form-group" style="margin-top: 15px;">
-        [cite_start]<label for="conditionNotes">Permanent Scratches/Marks (Describe)[cite: 37]:</label>
-        <textarea id="conditionNotes" rows="2"></textarea>
+    
+    <div class="form-group" style="display: block; margin-top: 15px;">
+        <label for="conditionNotes" style="width: auto;">Description of any Scratches/Marks/Damage:</label>
+        <textarea id="conditionNotes" rows="2" style="width: 100%;"></textarea>
     </div>
 
-    <h3 style="margin-top: 25px;">3. Internal Inspection (Check if in working condition)</h3>
-    <table class="access-table">
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Screen (dim) [cite: 44]</td></tr>
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Keyboard/keys (does not work) [cite: 44]</td></tr>
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Wireless (cannot connect to internet) [cite: 44]</td></tr>
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Battery (charged) [cite: 44]</td></tr>
-        [cite_start]<tr><td style="width: 50px;"><input type="checkbox"></td><td>Other (Describe) Previous User[cite: 45]: <input type="text" style="width: 60%; border: none; border-bottom: 1px solid #000;"></td></tr>
+    <h3 style="margin-top: 25px;">2. Functional Inspection (Check if working)</h3>
+    <table class="checklist-table">
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Display Brightness / No dead pixels</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>All keys and Trackpad/Mouse are working</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Wireless/Wi-Fi connectivity</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Battery Health (Charged and holding charge)</td></tr>
+        <tr><td style="width: 50px;"><input type="checkbox"></td><td>Operating System License/Activation</td></tr>
     </table>
 
-    [cite_start]<p style="margin-top: 20px; font-style: italic;">I have checked the above items and, unless otherwise noted, found them to be in good working condition. [cite: 49]</p>
+    <p style="margin-top: 20px; font-style: italic;">I have checked the above items and, unless otherwise noted, found them to be in good working condition.</p>
 
     <div class="signature-block">
         <div class="signature-field">
             <div class="signature-line"></div>
-            [cite_start]<p class="signature-label">Tech Support Initials / Name: Sidesh Ranasinghe [cite: 51]</p>
+            <p class="signature-label">Tech Support Signature</p>
         </div>
         <div class="signature-field">
-            <input type="date" style="text-align: center;" id="techDateInput">
-            [cite_start]<p class="signature-label">Date [cite: 52]</p>
+            <div class="input-container"><input type="text" placeholder="Tech Support Name" id="techNameInput"></div>
+            <p class="signature-label">Tech Support Name</p>
+        </div>
+        <div class="signature-field">
+            <div class="input-container"><input type="date" id="techDateInput"></div>
+            <p class="signature-label">Date</p>
         </div>
     </div>
 </form>
@@ -135,12 +136,7 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Set current date for signature date fields
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('ackDateInput').value = today;
-        document.getElementById('techDateInput').value = today;
-    });
+    // No pre-filled dates, but retaining script structure if future date logic is added.
 </script>
 </body>
 </html>
