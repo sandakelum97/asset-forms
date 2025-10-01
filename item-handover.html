@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Item Handover - Chesmi Groups IT</title>
+    <title>IT Item Handover - Chesmi IT</title>
     <link rel="stylesheet" href="style.css">
     <style>
         /* Specific styles for this form's table */
-        .handover-table th:nth-child(1) { width: 50px; } /* Item No. */
-        .handover-table th:nth-child(2) { width: 40%; } /* Item Name */
-        .handover-table th:nth-child(3) { width: 80px; } /* Qty */
+        .handover-table th:nth-child(1) { width: 40px; } /* Item No. */
+        .handover-table th:nth-child(2) { width: 30%; } /* Item Name */
+        .handover-table th:nth-child(3) { width: 15%; } /* Serial No. */
+        .handover-table th:nth-child(4) { width: 80px; } /* Qty */
+        
         .handover-table td input[type="text"] {
             border: none;
             border-bottom: 1px solid #ccc;
@@ -49,7 +51,7 @@
         <div class="logo-container">
             <img src="chesmi-logo.png" alt="Chesmi Logo">
         </div>
-        <h1>Item Handover Form</h1>
+        <h1>IT Item Handover Form</h1>
     </header>
 
     <h2>Item Recipient Details</h2>
@@ -66,24 +68,15 @@
         <div class="input-container"><input type="text" id="issuedToDept" placeholder="Department / Branch"></div>
     </div>
 
-    <h2>Item Details (Main Asset)</h2>
-    <div class="form-group">
-        <label for="mainItem">ITEM:</label>
-        <div class="input-container"><input type="text" id="mainItem" placeholder="E.g., Laptop / Desktop / Mobile Phone" required></div>
-    </div>
-    <div class="form-group">
-        <label for="mainSerial">Serial No:</label>
-        <div class="input-container"><input type="text" id="mainSerial" placeholder="Unique Serial Number or IMEI" required></div>
-    </div>
-
-    <h3 style="margin-top: 25px;">Accessories and Additional Items</h3>
+    <h2 style="margin-top: 30px;">Items Issued</h2>
     <table class="handover-table">
         <thead>
             <tr>
                 <th style="text-align: center;">No.</th>
-                <th>Item</th>
+                <th>Item (e.g., Laptop, Charger, Mouse)</th>
+                <th>Serial No.</th>
                 <th style="text-align: center;">Qty</th>
-                <th>Remarks / Serial No.</th>
+                <th>Remarks / Condition</th>
                 <th class="no-print" style="width: 50px;"></th>
             </tr>
         </thead>
@@ -96,9 +89,11 @@
 
     <h2 style="margin-top: 30px;">User Acknowledgment</h2>
     <div class="acknowledgement-box-small">
-        <p>I confirm that I am liable for any **physical damages or loss** caused to the provided IT resources.</p>
-        <p>I am aware that Chesmi Group IT resources are for **official use and authorized purposes** related to assigned duties, which do not interfere or conflict with those assigned duties and do not violate law, regulation, or standards of conduct.</p>
-        <p style="font-weight: bold; margin-top: 15px;">We hereby acknowledge the receipt of the above items in good working condition.</p>
+        <p style="font-weight: bold; margin-bottom: 10px;">I hereby acknowledge the receipt of all items listed above in good physical condition.</p>
+        
+        <p>I confirm that I am liable for any **damage, loss, or deterioration** caused to the provided Chesmi Group resources (both hardware and accessories) and will be responsible for their security.</p>
+        
+        <p>I am aware that all Chesmi Group resources are provided for **official use and authorized business purposes** related to assigned duties, and that their use must not violate any applicable company policy, regulation, or law.</p>
     </div>
 
     <div class="signature-block">
@@ -143,7 +138,7 @@
     let itemCounter = 1;
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Add 4 initial empty rows for quick filling
+        // Add 4 initial rows for quick filling
         for (let i = 0; i < 4; i++) {
             addItemRow();
         }
@@ -154,9 +149,10 @@
         const newRow = tableBody.insertRow();
         newRow.innerHTML = `
             <td>${itemCounter++}</td>
-            <td><input type="text" name="item_name"></td>
-            <td style="text-align: center;"><input type="text" name="item_qty" style="width: 50px; text-align: center;"></td>
-            <td><input type="text" name="item_remarks" placeholder="Condition or accessory S/N"></td>
+            <td><input type="text" name="item_name" placeholder="E.g., Laptop, Mouse, SIM Card"></td>
+            <td><input type="text" name="item_serial" placeholder="Unique Serial No."></td>
+            <td style="text-align: center;"><input type="text" name="item_qty" style="width: 50px; text-align: center;" placeholder="1"></td>
+            <td><input type="text" name="item_remarks" placeholder="Condition or specific details"></td>
             <td class="no-print" style="text-align: center; padding: 0;"><button type="button" onclick="removeItemRow(this)" style="background: none; border: none; color: #cc3333; cursor: pointer; padding: 5px;">X</button></td>
         `;
     }
@@ -164,7 +160,7 @@
     function removeItemRow(button) {
         const row = button.parentNode.parentNode;
         row.remove();
-        // Note: Recalculating item numbers is complex, so we'll leave the numbers static for digital use and rely on the printout being clear.
+        // Item numbers will not resequence automatically in this static HTML/JS model.
     }
 </script>
 </body>
