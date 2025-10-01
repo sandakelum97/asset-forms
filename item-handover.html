@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Item Handover - Chesmi Groups IT</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific styles for this form's table */
+        .handover-table th:nth-child(1) { width: 50px; } /* Item No. */
+        .handover-table th:nth-child(2) { width: 40%; } /* Item Name */
+        .handover-table th:nth-child(3) { width: 80px; } /* Qty */
+        .handover-table td input[type="text"] {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0;
+            padding: 5px;
+            width: 95%;
+            background-color: transparent;
+        }
+        .handover-table td:first-child { text-align: center; font-weight: 600; color: #555;}
+
+        .acknowledgement-box-small {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 6px;
+            background-color: var(--chesmi-light-gray);
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin-top: 20px;
+        }
+        .acknowledgement-box-small p {
+            margin: 0 0 10px 0;
+        }
+
+        /* Print override for item number inputs */
+        @media print {
+            .handover-table td:first-child input {
+                border: none !important;
+                background-color: transparent !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<form class="a4-page" id="handoverForm">
+    <header>
+        <div class="logo-container">
+            <img src="chesmi-logo.png" alt="Chesmi Logo">
+        </div>
+        <h1>CHESMI GROUPS Item Handover Form</h1>
+    </header>
+
+    <h2>Item Recipient Details</h2>
+    <div class="form-group">
+        <label for="issuedToName">Issued To:</label>
+        <div class="input-container"><input type="text" id="issuedToName" placeholder="Employee Name" required></div>
+    </div>
+    <div class="form-group">
+        <label for="issuedToID">ID / EPF No:</label>
+        <div class="input-container"><input type="text" id="issuedToID" placeholder="ID No. / EPF No."></div>
+    </div>
+    <div class="form-group">
+        <label for="issuedToDept">Department:</label>
+        <div class="input-container"><input type="text" id="issuedToDept" placeholder="Department / Branch"></div>
+    </div>
+
+    <h2>Item Details (Main Asset)</h2>
+    <div class="form-group">
+        <label for="mainItem">ITEM:</label>
+        <div class="input-container"><input type="text" id="mainItem" placeholder="E.g., Laptop / Desktop / Mobile Phone" required></div>
+    </div>
+    <div class="form-group">
+        <label for="mainSerial">Serial No:</label>
+        <div class="input-container"><input type="text" id="mainSerial" placeholder="Unique Serial Number or IMEI" required></div>
+    </div>
+
+    <h3 style="margin-top: 25px;">Accessories and Additional Items</h3>
+    <table class="handover-table">
+        <thead>
+            <tr>
+                <th style="text-align: center;">No.</th>
+                <th>Item</th>
+                <th style="text-align: center;">Qty</th>
+                <th>Remarks / Serial No.</th>
+                <th class="no-print" style="width: 50px;"></th>
+            </tr>
+        </thead>
+        <tbody id="itemsTableBody">
+            </tbody>
+    </table>
+    <div style="text-align: right; margin-top: 10px;">
+        <button type="button" class="no-print" onclick="addItemRow()">+ Add Item</button>
+    </div>
+
+    <h2 style="margin-top: 30px;">User Acknowledgment</h2>
+    <div class="acknowledgement-box-small">
+        <p>I confirm that I am liable for any **physical damages or loss** caused to the provided IT resources.</p>
+        <p>I am aware that Chesmi Group IT resources are for **official use and authorized purposes** related to assigned duties, which do not interfere or conflict with those assigned duties and do not violate law, regulation, or standards of conduct.</p>
+        <p style="font-weight: bold; margin-top: 15px;">We hereby acknowledge the receipt of the above items in good working condition.</p>
+    </div>
+
+    <div class="signature-block">
+        <div class="signature-field">
+            <div class="signature-line"></div>
+            <div class="input-container"><input type="text" placeholder="Received Person Name (Print)"></div>
+            <p class="signature-label">Received Person Name</p>
+        </div>
+        <div class="signature-field">
+            <div class="input-container"><input type="date" id="receivedDate"></div>
+            <p class="signature-label">Date</p>
+        </div>
+        <div class="signature-field">
+            <div class="signature-line"></div>
+            <p class="signature-label">Signature</p>
+        </div>
+    </div>
+    
+    <div class="signature-block" style="border-top: none; padding-top: 0; margin-top: 15px;">
+        <div class="signature-field">
+            <div class="signature-line"></div>
+            <div class="input-container"><input type="text" placeholder="IT Staff Name (Print)"></div>
+            <p class="signature-label">Rep. IT Office Name</p>
+        </div>
+        <div class="signature-field">
+            <div class="input-container"><input type="date" id="itHandoverDate"></div>
+            <p class="signature-label">Date</p>
+        </div>
+        <div class="signature-field">
+            <div class="signature-line"></div>
+            <p class="signature-label">Signature</p>
+        </div>
+    </div>
+</form>
+
+<div class="form-actions no-print">
+    <button type="button" onclick="window.print()">💾 Save & Generate PDF / Print</button>
+    <p class="print-message">Note: Use your browser's print function to generate a static PDF or hard copy.</p>
+</div>
+
+<script>
+    let itemCounter = 1;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Add 4 initial empty rows for quick filling
+        for (let i = 0; i < 4; i++) {
+            addItemRow();
+        }
+    });
+
+    function addItemRow() {
+        const tableBody = document.getElementById('itemsTableBody');
+        const newRow = tableBody.insertRow();
+        newRow.innerHTML = `
+            <td>${itemCounter++}</td>
+            <td><input type="text" name="item_name"></td>
+            <td style="text-align: center;"><input type="text" name="item_qty" style="width: 50px; text-align: center;"></td>
+            <td><input type="text" name="item_remarks" placeholder="Condition or accessory S/N"></td>
+            <td class="no-print" style="text-align: center; padding: 0;"><button type="button" onclick="removeItemRow(this)" style="background: none; border: none; color: #cc3333; cursor: pointer; padding: 5px;">X</button></td>
+        `;
+    }
+
+    function removeItemRow(button) {
+        const row = button.parentNode.parentNode;
+        row.remove();
+        // Note: Recalculating item numbers is complex, so we'll leave the numbers static for digital use and rely on the printout being clear.
+    }
+</script>
+</body>
+</html>
